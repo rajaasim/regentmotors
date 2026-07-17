@@ -1,0 +1,2 @@
+reference-screenshots/*.html -text -diff
+reference-screenshots/**/*.html -text -diff

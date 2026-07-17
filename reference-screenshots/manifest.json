@@ -1,0 +1,848 @@
+{
+  "source": "https://only-demo.lovable.app",
+  "captured_viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "primary_pages": [
+    {
+      "source_url": "https://only-demo.lovable.app/",
+      "final_url": "https://only-demo.lovable.app/",
+      "title": "Regent Motors — Elevate Your Drive",
+      "screenshot": "01-home.png",
+      "html": "01-home.html",
+      "document_size": {
+        "width": 1440,
+        "height": 3896
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/#",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory"
+      ],
+      "images": [
+        {
+          "alt": "Luxury vehicle at Regent Motors",
+          "src": "https://only-demo.lovable.app/assets/hero-car-D1UCMpFs.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ]
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "02-inventory.png",
+      "html": "02-inventory.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ]
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/financing",
+      "final_url": "https://only-demo.lovable.app/financing",
+      "title": "Financing & Car Finder — Regent Motors",
+      "screenshot": "03-financing.png",
+      "html": "03-financing.html",
+      "document_size": {
+        "width": 1440,
+        "height": 1647
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/financing#",
+        "https://only-demo.lovable.app/inventory"
+      ],
+      "images": [],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ]
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/contact",
+      "final_url": "https://only-demo.lovable.app/contact",
+      "title": "Contact & Visit — Regent Motors",
+      "screenshot": "04-contact.png",
+      "html": "04-contact.html",
+      "document_size": {
+        "width": 1440,
+        "height": 1776
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/contact#",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory"
+      ],
+      "images": [],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ]
+    }
+  ],
+  "interactive_states": [],
+  "vehicle_details": [
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/01-maserati-ghibli.png",
+      "html": "vehicle-details/01-maserati-ghibli.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "SEDAN 2023 · MODENA Q4 Maserati Ghibli Price $78,990 Mileage 12,450 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/02-range-rover-sport.png",
+      "html": "vehicle-details/02-range-rover-sport.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "SUV 2024 · AUTOBIOGRAPHY Range Rover Sport Price $124,500 Mileage 5,320 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/03-aston-martin-vantage.png",
+      "html": "vehicle-details/03-aston-martin-vantage.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "COUPE 2022 · COUPE Aston Martin Vantage Price $142,000 Mileage 8,900 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/04-ferrari-portofino.png",
+      "html": "vehicle-details/04-ferrari-portofino.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "CONVERTIBLE 2023 · M SPIDER Ferrari Portofino Price $248,000 Mileage 3,120 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/05-ford-f-150-raptor.png",
+      "html": "vehicle-details/05-ford-f-150-raptor.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "TRUCK 2024 · SUPERCREW Ford F-150 Raptor Price $89,750 Mileage 4,210 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/06-mercedes-benz-a-class.png",
+      "html": "vehicle-details/06-mercedes-benz-a-class.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "HATCHBACK 2023 · AMG 35 HATCH Mercedes-Benz A-Class Price $54,900 Mileage 15,800 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/07-bmw-m5.png",
+      "html": "vehicle-details/07-bmw-m5.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "SEDAN 2022 · COMPETITION BMW M5 Price $112,000 Mileage 18,450 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/08-porsche-cayenne.png",
+      "html": "vehicle-details/08-porsche-cayenne.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "SUV 2024 · GTS COUPE Porsche Cayenne Price $138,000 Mileage 2,100 mi VIEW DETAILS"
+    },
+    {
+      "source_url": "https://only-demo.lovable.app/inventory",
+      "final_url": "https://only-demo.lovable.app/inventory",
+      "title": "Inventory — Regent Motors",
+      "screenshot": "vehicle-details/09-audi-r8.png",
+      "html": "vehicle-details/09-audi-r8.html",
+      "document_size": {
+        "width": 1440,
+        "height": 2628
+      },
+      "internal_links": [
+        "https://only-demo.lovable.app/",
+        "https://only-demo.lovable.app/contact",
+        "https://only-demo.lovable.app/financing",
+        "https://only-demo.lovable.app/inventory",
+        "https://only-demo.lovable.app/inventory#"
+      ],
+      "images": [
+        {
+          "alt": "2023 Maserati Ghibli",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Range Rover Sport",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 Aston Martin Vantage",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Ferrari Portofino",
+          "src": "https://only-demo.lovable.app/assets/car-convertible-Dxlow1cr.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Ford F-150 Raptor",
+          "src": "https://only-demo.lovable.app/assets/car-truck-DnmIXS6J.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Mercedes-Benz A-Class",
+          "src": "https://only-demo.lovable.app/assets/car-hatch-BsVqXOPi.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2022 BMW M5",
+          "src": "https://only-demo.lovable.app/assets/car-sedan-C82zV-EP.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2024 Porsche Cayenne",
+          "src": "https://only-demo.lovable.app/assets/car-suv-DHLrrzSS.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "2023 Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        },
+        {
+          "alt": "Audi R8",
+          "src": "https://only-demo.lovable.app/assets/car-coupe-DvVuCS2i.jpg",
+          "srcset": ""
+        }
+      ],
+      "stylesheets": [
+        "https://only-demo.lovable.app/assets/styles-DCFNPmeu.css"
+      ],
+      "trigger_text": "COUPE 2023 · V10 PERFORMANCE Audi R8 Price $198,500 Mileage 6,200 mi VIEW DETAILS"
+    }
+  ]
+}
