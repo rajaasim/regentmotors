@@ -2,14 +2,46 @@ import type { Metadata } from "next";
 
 import { LeadForm } from "@/components/forms/lead-form";
 import { siteSettings } from "@/data/site";
+import { getVehicleById } from "@/lib/vehicles";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Regent Motors to arrange a viewing, request a test drive or ask a question.",
+    "Contact REGENT MOTORS LLC to arrange a viewing, request a test drive or ask a question.",
 };
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams: Promise<{
+    intent?: string | string[];
+    vehicle?: string | string[];
+  }>;
+};
+
+function firstSearchValue(value: string | string[] | undefined) {
+  return typeof value === "string" ? value : undefined;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const query = await searchParams;
+  const vehicle = getVehicleById(firstSearchValue(query.vehicle) ?? "");
+  const isTestDrive = firstSearchValue(query.intent) === "test_drive";
+  const formType = vehicle
+    ? isTestDrive
+      ? "test_drive"
+      : "availability"
+    : isTestDrive
+      ? "test_drive"
+      : "contact";
+  const formTitle = vehicle
+    ? `Enquire about the ${vehicle.year} ${vehicle.make} ${vehicle.model}`
+    : isTestDrive
+      ? "Book a test drive"
+      : "How can we help?";
+  const formDescription = vehicle
+    ? `Your enquiry will include the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
+    : isTestDrive
+      ? "Tell us how to reach you and we will arrange a suitable time."
+      : undefined;
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     `${siteSettings.addressLine1}, ${siteSettings.addressLine2}`,
   )}`;
@@ -32,7 +64,7 @@ export default function ContactPage() {
         <div className="site-container grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
           <div className="space-y-6">
             <section className="rounded-xl border border-border bg-surface p-7">
-              <p className="eyebrow">Regent Motors</p>
+              <p className="eyebrow">{siteSettings.name}</p>
               <dl className="mt-7 space-y-6">
                 <ContactItem label="Showroom" value={`${siteSettings.addressLine1}\n${siteSettings.addressLine2}`} />
                 <ContactItem label="Direct line" value={siteSettings.phoneDisplay} href={siteSettings.phoneHref} />
@@ -56,10 +88,12 @@ export default function ContactPage() {
           </div>
 
           <LeadForm
-            formType="contact"
-            title="How can we help?"
+            formType={formType}
+            title={formTitle}
+            description={formDescription}
             submitLabel="Save message"
             includeSubject
+            vehicleId={vehicle?.id}
           />
         </div>
       </section>

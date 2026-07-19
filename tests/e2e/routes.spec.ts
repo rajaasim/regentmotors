@@ -20,7 +20,9 @@ test("inventory filters and opens vehicle details", async ({ page }) => {
   await page.goto("/inventory");
 
   await expect(page.locator('[data-hydrated="true"]')).toBeVisible();
-  await page.getByLabel("Body style").selectOption("coupe");
+  const bodyStyle = page.getByLabel("Body style");
+  await expect(bodyStyle).toBeVisible();
+  await bodyStyle.selectOption("coupe");
   await expect(page.getByText("2 vehicles available")).toBeVisible();
 
   const vantageCard = page.getByRole("article").filter({
@@ -30,4 +32,28 @@ test("inventory filters and opens vehicle details", async ({ page }) => {
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.getByRole("button", { name: "Close vehicle details" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
+});
+
+test("mobile navigation closes with Escape and restores focus", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  const mobileNavigation = page.getByRole("dialog", { name: "Mobile navigation" });
+
+  await expect(mobileNavigation).toBeVisible();
+  await expect(mobileNavigation.getByRole("link", { name: "Home" })).toBeFocused();
+
+  await page.keyboard.press("Escape");
+  await expect(mobileNavigation).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Open navigation" })).toBeFocused();
+});
+
+test("vehicle and test-drive enquiries preserve their context", async ({ page }) => {
+  await page.goto("/contact?vehicle=veh-maserati-ghibli-2023");
+  await expect(page.getByRole("heading", { name: "Enquire about the 2023 Maserati Ghibli" })).toBeVisible();
+  await expect(page.getByText("Your enquiry will include the 2023 Maserati Ghibli.")).toBeVisible();
+
+  await page.goto("/contact?intent=test_drive");
+  await expect(page.getByRole("heading", { name: "Book a test drive" })).toBeVisible();
 });

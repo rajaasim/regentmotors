@@ -64,6 +64,7 @@ Database code is isolated under `src/db` and `src/data/leads.ts`. Do not import 
 ## Key project references
 
 - Product and technical scope: `docs/V1-SPECIFICATION.md`
+- Completed remediation record: `docs/REMEDIATION-CHECKLIST.md`
 - Approved visual archive: `reference-screenshots/README.md`
 - Static inventory: `src/data/vehicles.ts`
 - Lead validation contract: `src/lib/lead-validation.ts`

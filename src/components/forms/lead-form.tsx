@@ -132,7 +132,7 @@ export function LeadForm({
 
       <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-muted">
         <input type="checkbox" name="consent" required className="mt-1 accent-gold" />
-        <span>I agree that Regent Motors may use these details to respond to this enquiry.</span>
+        <span>I agree that REGENT MOTORS LLC may use these details to respond to this enquiry.</span>
       </label>
 
       <div className="mt-5">

@@ -1,9 +1,9 @@
 // Source: client-supplied Lovable reference archived in reference-screenshots/.
 export const siteSettings = {
-  name: "Regent Motors",
+  name: "REGENT MOTORS LLC",
   shortName: "Regent",
-  phoneDisplay: "647-618-0770",
-  phoneHref: "tel:+16476180770",
+  phoneDisplay: "+1 (848) 222-1811",
+  phoneHref: "tel:+18482221811",
   email: "info@regentmotors.ca",
   addressLine1: "39c Chambers Brg Rd #25e",
   addressLine2: "Lakewood, NJ 08701, USA",

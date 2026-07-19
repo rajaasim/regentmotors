@@ -5,7 +5,7 @@ import { LeadForm } from "@/components/forms/lead-form";
 export const metadata: Metadata = {
   title: "Financing",
   description:
-    "Start a financing conversation or ask Regent Motors to source your next vehicle.",
+    "Start a financing conversation or ask REGENT MOTORS LLC to source your next vehicle.",
 };
 
 export default function FinancingPage() {

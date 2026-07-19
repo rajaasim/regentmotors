@@ -28,6 +28,7 @@
 # misc
 .DS_Store
 *.pem
+/project_code_bundle.txt
 
 # debug
 npm-debug.log*

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { SectionHeading } from "@/components/ui/section-heading";
 import { VehicleShowcase } from "@/components/vehicles/vehicle-showcase";
 import { getFeaturedVehicles } from "@/lib/vehicles";
 
@@ -25,7 +24,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative isolate min-h-[700px] overflow-hidden border-b border-border">
+      <section className="relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen">
         <Image
           src="/images/hero-car.jpg"
           alt="Premium black vehicle in the Regent Motors showroom"
@@ -34,21 +33,22 @@ export default function HomePage() {
           sizes="100vw"
           className="-z-20 object-cover object-center"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,.96)_0%,rgba(0,0,0,.74)_42%,rgba(0,0,0,.24)_75%,rgba(0,0,0,.65)_100%)]" />
-        <div className="site-container flex min-h-[700px] items-center py-24">
-          <div className="max-w-2xl">
-            <p className="eyebrow">· Regent Motors ·</p>
-            <h1 className="mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-7xl">
-              Elevate Your <span className="text-gold">Drive.</span>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-background via-background/45 to-background/80" />
+
+        <div className="site-container relative z-10 py-28 text-center sm:py-32">
+          <div className="mx-auto max-w-4xl">
+            <p className="eyebrow animate-fade-in-up">Welcome to REGENT MOTORS LLC</p>
+            <h1 className="mt-6 font-serif text-5xl font-medium leading-none tracking-tight text-white sm:text-7xl md:text-8xl animate-fade-in-up animation-delay-150">
+              Elevate Your Drive<span className="text-gold">.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-7 text-white/65">
-              A meticulously curated collection of premium pre-owned vehicles — backed by transparent history, concierge financing and the Regent standard of quality.
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg animate-fade-in-up animation-delay-300">
+              Curated luxury performance vehicles for those who refuse to compromise.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link className="button button-outline" href="/inventory">
-                Explore inventory <span aria-hidden>→</span>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up animation-delay-450">
+              <Link className="button button-primary w-full sm:w-auto" href="/inventory">
+                View inventory <span aria-hidden>→</span>
               </Link>
-              <Link className="button button-primary" href="/contact">
+              <Link className="button button-outline w-full sm:w-auto" href="/contact?intent=test_drive">
                 Book a test drive
               </Link>
             </div>
@@ -56,42 +56,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-space">
+      <section className="border-b border-white/5 bg-background py-20 sm:py-28">
         <div className="site-container">
-          <SectionHeading
-            eyebrow="Shop by body style"
-            title="Find Your Signature Drive"
-            align="center"
-          />
-          <div className="mt-18 flex items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow">Featured inventory</p>
-              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
-                Hand-Picked This Week
-              </h2>
-            </div>
-            <Link className="hidden text-xs uppercase tracking-[0.18em] text-muted hover:text-gold sm:block" href="/inventory">
-              View full inventory
-            </Link>
-          </div>
           <VehicleShowcase vehicles={featuredVehicles} />
         </div>
       </section>
 
-      <section className="section-space border-y border-border bg-black">
+      <section id="about" className="section-space border-b border-border bg-black scroll-mt-28">
         <div className="site-container">
-          <SectionHeading
-            eyebrow="The Regent Promise"
-            title="Built On A Foundation Of Excellence"
-            align="center"
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">The Regent Promise</p>
+            <h2 className="mt-5 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
+              Built On A Foundation Of Excellence
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
             {promises.map((promise, index) => (
-              <article key={promise.title} className="rounded-xl border border-border bg-surface p-7">
+              <article key={promise.title} className="bg-background p-8 transition-colors hover:bg-surface sm:p-10">
                 <div className="grid size-10 place-items-center rounded-lg border border-gold/40 text-sm text-gold">
                   0{index + 1}
                 </div>
-                <h3 className="mt-7 text-base font-semibold text-white">{promise.title}</h3>
+                <h3 className="mt-7 font-serif text-2xl font-medium text-white">{promise.title}</h3>
                 <p className="mt-4 text-sm leading-6 text-muted">{promise.copy}</p>
               </article>
             ))}
@@ -99,10 +85,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-space">
+      <section className="section-space bg-background">
         <div className="site-container text-center">
           <p className="eyebrow">Concierge sourcing</p>
-          <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
             Can&apos;t find the one? <span className="text-gold">We&apos;ll source it.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted">

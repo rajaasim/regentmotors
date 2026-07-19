@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -21,14 +23,14 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
   title: {
-    default: "Regent Motors | Premium Pre-Owned Vehicles",
-    template: "%s | Regent Motors",
+    default: "REGENT MOTORS LLC | Premium Pre-Owned Vehicles",
+    template: "%s | REGENT MOTORS LLC",
   },
   description:
-    "Explore a meticulously inspected collection of premium pre-owned vehicles at Regent Motors.",
+    "Explore a meticulously inspected collection of premium pre-owned vehicles at REGENT MOTORS LLC.",
   openGraph: {
     type: "website",
-    siteName: "Regent Motors",
+    siteName: "REGENT MOTORS LLC",
   },
 };
 
@@ -40,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <a className="skip-link" href="#main-content">

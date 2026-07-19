@@ -16,3 +16,7 @@ export function getVehicleBySlug(slug: string) {
 export function getVehiclesByBodyStyle(bodyStyle: BodyStyle) {
   return vehicles.filter((vehicle) => vehicle.bodyStyle === bodyStyle);
 }
+
+export function getVehicleById(id: string) {
+  return vehicles.find((vehicle) => vehicle.id === id);
+}
