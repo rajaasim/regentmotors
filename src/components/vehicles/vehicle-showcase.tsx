@@ -23,7 +23,7 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16" data-reveal>
         <div className="max-w-xl">
           <p className="eyebrow">The Collection</p>
           <h2 className="mt-4 font-serif text-4xl font-medium text-white md:text-5xl">
@@ -53,7 +53,7 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-reveal-stagger>
         {filteredVehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} vehicle={vehicle} onSelect={setSelectedVehicle} />
         ))}

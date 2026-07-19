@@ -39,7 +39,7 @@ export default function InventoryPage() {
       </section>
 
       <section className="bg-background py-16">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6" data-reveal>
           <InventoryExplorer vehicles={getVehicles()} />
         </div>
       </section>

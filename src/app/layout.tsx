@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { AmbientInteractions } from "@/components/ui/ambient-interactions";
 
 import "./globals.css";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <AmbientInteractions />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

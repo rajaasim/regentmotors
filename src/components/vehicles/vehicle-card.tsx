@@ -18,7 +18,11 @@ export function VehicleCard({
   onSelect: (vehicle: Vehicle) => void;
 }) {
   return (
-    <article className="premium-card-hover group overflow-hidden rounded-xl border border-border bg-surface">
+    <article
+      className="premium-card-hover group overflow-hidden rounded-xl border border-border bg-surface"
+      data-cursor-reveal
+      data-reveal="fade"
+    >
       <div className="relative aspect-[16/10] overflow-hidden bg-black">
         <Image
           src={vehicle.images[0].src}

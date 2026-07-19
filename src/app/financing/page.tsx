@@ -12,7 +12,7 @@ export default function FinancingPage() {
   return (
     <>
       <section className="page-hero">
-        <div className="site-container">
+        <div className="site-container" data-reveal>
           <p className="eyebrow">Financing</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-tight text-white sm:text-6xl">
             Drive It Home, On Your Terms
@@ -24,7 +24,7 @@ export default function FinancingPage() {
       </section>
 
       <section className="section-space pt-12">
-        <div className="site-container grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="site-container grid gap-8 lg:grid-cols-[1.15fr_.85fr]" data-reveal-stagger>
           <LeadForm
             formType="financing"
             title="Start a financing conversation"

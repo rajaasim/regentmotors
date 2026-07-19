@@ -90,6 +90,8 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
           ref={filtersRef}
           className="self-start rounded-xl border border-border bg-surface p-6 lg:sticky lg:top-28 lg:p-7"
           aria-labelledby="inventory-filter-title"
+          data-cursor-reveal
+          data-reveal="fade"
         >
           <h2 id="inventory-filter-title" className="font-serif text-2xl font-medium text-white">
             Refine Search
@@ -187,7 +189,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
           </div>
 
           {displayedVehicles.length > 0 ? (
-            <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-reveal-stagger>
               {displayedVehicles.map((vehicle) => (
                 <VehicleCard key={vehicle.id} vehicle={vehicle} onSelect={setSelectedVehicle} />
               ))}

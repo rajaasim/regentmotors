@@ -6,7 +6,7 @@ import { navigation, siteSettings } from "@/data/site";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background text-white">
-      <section className="border-b border-border px-6 py-20 text-center sm:py-24">
+      <section className="border-b border-border px-6 py-20 text-center sm:py-24" data-reveal>
         <p className="eyebrow">Private consultations</p>
         <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-medium tracking-tight sm:text-5xl">
           Ready to Elevate Your Drive?

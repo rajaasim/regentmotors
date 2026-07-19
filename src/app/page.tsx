@@ -24,7 +24,10 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen">
+      <section
+        className="relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen"
+        data-cursor-reveal
+      >
         <Image
           src="/images/hero-car.jpg"
           alt="Premium black vehicle in the Regent Motors showroom"
@@ -64,16 +67,24 @@ export default function HomePage() {
 
       <section id="about" className="section-space border-b border-border bg-black scroll-mt-28">
         <div className="site-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-2xl text-center" data-reveal>
             <p className="eyebrow">The Regent Promise</p>
             <h2 className="mt-5 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
               Built On A Foundation Of Excellence
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
+          <div
+            className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3"
+            data-reveal-stagger
+          >
             {promises.map((promise, index) => (
-              <article key={promise.title} className="bg-background p-8 transition-colors hover:bg-surface sm:p-10">
+              <article
+                key={promise.title}
+                className="bg-background p-8 transition-colors hover:bg-surface sm:p-10"
+                data-cursor-reveal
+                data-reveal
+              >
                 <div className="grid size-10 place-items-center rounded-lg border border-gold/40 text-sm text-gold">
                   0{index + 1}
                 </div>
@@ -86,7 +97,7 @@ export default function HomePage() {
       </section>
 
       <section className="section-space bg-background">
-        <div className="site-container text-center">
+        <div className="site-container text-center" data-reveal>
           <p className="eyebrow">Concierge sourcing</p>
           <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
             Can&apos;t find the one? <span className="text-gold">We&apos;ll source it.</span>

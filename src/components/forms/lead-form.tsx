@@ -98,7 +98,12 @@ export function LeadForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-surface p-6 sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-xl border border-border bg-surface p-6 sm:p-8"
+      data-cursor-reveal
+      data-reveal="fade"
+    >
       <p className="eyebrow">Send an enquiry</p>
       <h2 className="mt-4 text-2xl font-semibold text-white">{title}</h2>
       {description ? <p className="mt-3 text-sm leading-6 text-muted">{description}</p> : null}

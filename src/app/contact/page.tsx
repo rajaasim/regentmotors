@@ -49,7 +49,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   return (
     <>
       <section className="page-hero">
-        <div className="site-container">
+        <div className="site-container" data-reveal>
           <p className="eyebrow">Visit · Call · Write</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-tight text-white sm:text-6xl">
             Get in Touch
@@ -63,7 +63,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className="section-space pt-12">
         <div className="site-container grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
           <div className="space-y-6">
-            <section className="rounded-xl border border-border bg-surface p-7">
+            <section
+              className="rounded-xl border border-border bg-surface p-7"
+              data-cursor-reveal
+              data-reveal="fade"
+            >
               <p className="eyebrow">{siteSettings.name}</p>
               <dl className="mt-7 space-y-6">
                 <ContactItem label="Showroom" value={`${siteSettings.addressLine1}\n${siteSettings.addressLine2}`} />
@@ -78,6 +82,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               target="_blank"
               rel="noreferrer"
               className="group grid min-h-72 place-items-center rounded-xl border border-border bg-[radial-gradient(circle_at_30%_30%,rgba(223,171,48,.16),transparent_45%),linear-gradient(135deg,#111,#060606)] text-center transition hover:border-gold/50"
+              data-cursor-reveal
+              data-reveal="fade"
             >
               <span>
                 <span className="eyebrow">Showroom location</span>
