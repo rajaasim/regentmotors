@@ -83,7 +83,7 @@ export function TurnstileWidget({
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
-        onLoad={renderWidget}
+        onReady={renderWidget}
       />
       <div ref={containerRef} />
     </>

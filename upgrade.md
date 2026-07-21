@@ -256,14 +256,14 @@
 
 These are intentionally owned by the user/client. The implementation goal may finish with these items open.
 
-- [ ] [EXTERNAL] Create or select the Neon project and provide the development/preview `DATABASE_URL` values through secure environment configuration.
-- [ ] [EXTERNAL] Create or select the Cloudflare R2 bucket and provide scoped S3-compatible credentials through secure environment configuration.
-- [ ] [EXTERNAL] Configure the approved R2 public/custom domain and DNS.
-- [ ] [EXTERNAL] Apply the documented R2 CORS policy for local, preview and approved site origins.
-- [ ] [EXTERNAL] Create or select the Vercel project and connect the repository.
-- [ ] [EXTERNAL] Add documented environment variables to Vercel development/preview environments.
-- [ ] [EXTERNAL] Configure Turnstile keys and allowed hostnames for preview testing.
-- [ ] [EXTERNAL] Run reviewed production/service migrations against the supplied Neon project.
+- [x] [EXTERNAL] Create or select the Neon project and provide the development/preview `DATABASE_URL` values through secure environment configuration.
+- [x] [EXTERNAL] Create or select the Cloudflare R2 bucket and provide scoped S3-compatible credentials through secure environment configuration.
+- [x] [EXTERNAL] Configure the approved R2 public/custom domain and DNS.
+- [x] [EXTERNAL] Apply the documented R2 CORS policy for local, preview and approved site origins.
+- [x] [EXTERNAL] Create or select the Vercel project and connect the repository.
+- [x] [EXTERNAL] Add documented environment variables to Vercel development/preview environments.
+- [x] [EXTERNAL] Configure Turnstile keys and allowed hostnames for preview testing.
+- [x] [EXTERNAL] Run reviewed production/service migrations against the supplied Neon project.
 - [ ] [EXTERNAL] Bootstrap the real first administrator through the documented secure command.
 - [ ] [EXTERNAL] Perform the private Vercel client-review deployment.
 - [ ] [EXTERNAL][TODO] Confirm the final business email, address, hours, map/directions URL and verified social profiles.
