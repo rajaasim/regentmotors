@@ -265,7 +265,7 @@ These are intentionally owned by the user/client. The implementation goal may fi
 - [x] [EXTERNAL] Configure Turnstile keys and allowed hostnames for preview testing.
 - [x] [EXTERNAL] Run reviewed production/service migrations against the supplied Neon project.
 - [ ] [EXTERNAL] Bootstrap the real first administrator through the documented secure command.
-- [ ] [EXTERNAL] Perform the private Vercel client-review deployment.
+- [x] [EXTERNAL] Perform the private Vercel client-review deployment.
 - [ ] [EXTERNAL][TODO] Confirm the final business email, address, hours, map/directions URL and verified social profiles.
 - [ ] [EXTERNAL][TODO] Confirm the final vehicle inventory, VIN publication rule and image rights.
 - [ ] [EXTERNAL][TODO] Confirm whether sold vehicles remain visible publicly.
