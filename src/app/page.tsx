@@ -1,26 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { VehicleShowcase } from "@/components/vehicles/vehicle-showcase";
+import { getSiteSettings } from "@/data/site-settings-repository";
 import { getFeaturedVehicles } from "@/lib/vehicles";
 
-const promises = [
-  {
-    title: "Value · Integrity · Performance",
-    copy: "Every vehicle is selected for provenance, condition and long-term value — no compromises and no surprises.",
-  },
-  {
-    title: "Stress-Free Financing",
-    copy: "A clear first conversation with transparent expectations and a pathway tailored to the buyer.",
-  },
-  {
-    title: "Meticulously Inspected",
-    copy: "Mechanical and cosmetic review, documented history and delivery-ready presentation.",
-  },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return { title: settings.seo.home.title, description: settings.seo.home.description };
+}
 
-export default function HomePage() {
-  const featuredVehicles = getFeaturedVehicles();
+export default async function HomePage() {
+  const [featuredVehicles, settings] = await Promise.all([getFeaturedVehicles(), getSiteSettings()]);
+  const home = settings.home;
 
   return (
     <>
@@ -40,19 +33,19 @@ export default function HomePage() {
 
         <div className="site-container relative z-10 py-28 text-center sm:py-32">
           <div className="mx-auto max-w-4xl">
-            <p className="eyebrow animate-fade-in-up">Welcome to REGENT MOTORS LLC</p>
+            <p className="eyebrow animate-fade-in-up">{home.heroEyebrow}</p>
             <h1 className="mt-6 font-serif text-5xl font-medium leading-none tracking-tight text-white sm:text-7xl md:text-8xl animate-fade-in-up animation-delay-150">
-              Elevate Your Drive<span className="text-gold">.</span>
+              {home.heroHeading}<span className="text-gold">.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg animate-fade-in-up animation-delay-300">
-              Curated luxury performance vehicles for those who refuse to compromise.
+              {home.heroCopy}
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up animation-delay-450">
               <Link className="button button-primary w-full sm:w-auto" href="/inventory">
-                View inventory <span aria-hidden>→</span>
+                {home.primaryCtaLabel} <span aria-hidden>→</span>
               </Link>
               <Link className="button button-outline w-full sm:w-auto" href="/contact?intent=test_drive">
-                Book a test drive
+                {home.secondaryCtaLabel}
               </Link>
             </div>
           </div>
@@ -68,9 +61,9 @@ export default function HomePage() {
       <section id="about" className="section-space border-b border-border bg-black scroll-mt-28">
         <div className="site-container">
           <div className="mx-auto max-w-2xl text-center" data-reveal>
-            <p className="eyebrow">The Regent Promise</p>
+            <p className="eyebrow">{home.promiseEyebrow}</p>
             <h2 className="mt-5 font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
-              Built On A Foundation Of Excellence
+              {home.promiseHeading}
             </h2>
           </div>
 
@@ -78,7 +71,7 @@ export default function HomePage() {
             className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3"
             data-reveal-stagger
           >
-            {promises.map((promise, index) => (
+            {home.promises.map((promise, index) => (
               <article
                 key={promise.title}
                 className="bg-background p-8 transition-colors hover:bg-surface sm:p-10"
@@ -98,15 +91,15 @@ export default function HomePage() {
 
       <section className="section-space bg-background">
         <div className="site-container text-center" data-reveal>
-          <p className="eyebrow">Concierge sourcing</p>
+          <p className="eyebrow">{home.conciergeEyebrow}</p>
           <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl font-medium tracking-tight text-white sm:text-5xl">
-            Can&apos;t find the one? <span className="text-gold">We&apos;ll source it.</span>
+            {home.conciergeHeading}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted">
-            Tell us the make, model and budget. Our buyers use a private network of dealers and auctions to find the right match.
+            {home.conciergeCopy}
           </p>
           <Link className="button button-primary mt-8" href="/financing#car-finder">
-            Start car finder <span aria-hidden>→</span>
+            {home.conciergeCtaLabel} <span aria-hidden>→</span>
           </Link>
         </div>
       </section>

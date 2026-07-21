@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 
 import { LeadForm } from "@/components/forms/lead-form";
-import { siteSettings } from "@/data/site";
+import { getSiteSettings } from "@/data/site-settings-repository";
 import { getVehicleById } from "@/lib/vehicles";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact REGENT MOTORS LLC to arrange a viewing, request a test drive or ask a question.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return { title: settings.seo.contact.title, description: settings.seo.contact.description };
+}
 
 type ContactPageProps = {
   searchParams: Promise<{
@@ -23,7 +22,10 @@ function firstSearchValue(value: string | string[] | undefined) {
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const query = await searchParams;
-  const vehicle = getVehicleById(firstSearchValue(query.vehicle) ?? "");
+  const [vehicle, settings] = await Promise.all([
+    getVehicleById(firstSearchValue(query.vehicle) ?? ""),
+    getSiteSettings(),
+  ]);
   const isTestDrive = firstSearchValue(query.intent) === "test_drive";
   const formType = vehicle
     ? isTestDrive
@@ -42,8 +44,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     : isTestDrive
       ? "Tell us how to reach you and we will arrange a suitable time."
       : undefined;
-  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${siteSettings.addressLine1}, ${siteSettings.addressLine2}`,
+  const directionsUrl = settings.mapUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${settings.addressLine1 ?? ""}, ${settings.addressLine2 ?? ""}`,
   )}`;
 
   return (
@@ -55,7 +57,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             Get in Touch
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-            Schedule a private viewing, book a test drive or simply ask a question.
+            {settings.contactIntroduction}
           </p>
         </div>
       </section>
@@ -68,12 +70,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               data-cursor-reveal
               data-reveal="fade"
             >
-              <p className="eyebrow">{siteSettings.name}</p>
+            <p className="eyebrow">{settings.name}</p>
               <dl className="mt-7 space-y-6">
-                <ContactItem label="Showroom" value={`${siteSettings.addressLine1}\n${siteSettings.addressLine2}`} />
-                <ContactItem label="Direct line" value={siteSettings.phoneDisplay} href={siteSettings.phoneHref} />
-                <ContactItem label="Email" value={siteSettings.email} href={`mailto:${siteSettings.email}`} />
-                <ContactItem label="Hours" value={siteSettings.hours.join("\n")} />
+                <ContactItem label="Showroom" value={`${settings.addressLine1 ?? ""}\n${settings.addressLine2 ?? ""}`} />
+                <ContactItem label="Direct line" value={settings.phoneDisplay} href={settings.phoneHref} />
+                {settings.email ? <ContactItem label="Email" value={settings.email} href={`mailto:${settings.email}`} /> : null}
+                <ContactItem label="Hours" value={settings.hours.join("\n")} />
               </dl>
             </section>
 
@@ -100,6 +102,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             submitLabel="Save message"
             includeSubject
             vehicleId={vehicle?.id}
+            consentText={settings.consentText}
+            consentTextVersion={settings.consentTextVersion}
           />
         </div>
       </section>

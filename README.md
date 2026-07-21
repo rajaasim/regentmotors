@@ -1,28 +1,40 @@
 # Regent Motors
 
-Production-oriented v1 skeleton for the Regent Motors dealership website.
+Regent Motors is a complete CMS-enabled dealership website. Public visitors can browse the current vehicle collection and submit approved enquiry forms. Authorized staff can manage vehicles, images and mapped site settings through a protected project-owned administration area.
 
-The site uses static, typed content for the public pages and inventory. Public forms persist approved lead data to PostgreSQL through a server-only data layer. CMS functionality, user accounts, administration and notifications are intentionally outside the v1 scope.
+There are no customer accounts or public registration. Staff authentication exists only for `/admin`. Lead submissions remain private PostgreSQL records; notification delivery and lead-management screens are outside the current scope.
 
 ## Stack
 
-- Next.js 16 App Router
-- React 19 and TypeScript
+- Next.js 16 App Router, React 19 and strict TypeScript
 - Tailwind CSS 4
-- Neon PostgreSQL
-- Drizzle ORM
-- Zod
-- Cloudflare Turnstile integration boundary
-- Playwright
+- PostgreSQL/Neon with Drizzle ORM
+- Better Auth for staff-only database sessions
+- Cloudflare R2 through its S3-compatible API
+- Zod and Cloudflare Turnstile
+- Vitest, PGlite and Playwright
 - pnpm
 
 ## Routes
+
+Public:
 
 - `/`
 - `/inventory`
 - `/financing`
 - `/contact`
 - `POST /api/leads`
+
+Staff administration:
+
+- `/admin/login`
+- `/admin`
+- `/admin/vehicles`
+- `/admin/vehicles/new`
+- `/admin/vehicles/[id]`
+- `/admin/settings`
+
+Authentication API requests use `/api/auth/*`. Media upload intents and finalization use protected server boundaries; the browser sends image bytes directly to R2.
 
 ## Local setup
 
@@ -32,22 +44,15 @@ pnpm install
 pnpm dev
 ```
 
-The public site can be viewed without database credentials. Form submission remains unavailable until PostgreSQL and Turnstile environment values are configured.
+The approved static source data remains available as a typed fallback when no database is configured. Database-backed administration, lead persistence and real R2 uploads require the corresponding local environment values.
 
-## Checks
+The application uses a direct PostgreSQL connection, so the same `DATABASE_URL` format works with local PostgreSQL and Neon. Local development can therefore run the complete schema and seed workflow without a Neon account.
 
-```powershell
-pnpm lint
-pnpm typecheck
-pnpm build
-pnpm test:e2e
-```
+Never commit `.env.local` or real credentials.
 
-The browser suite uses the machine's existing Google Chrome installation and does not download a separate Playwright browser build.
+## Database workflow
 
-## Database
-
-Generate a migration after changing `src/db/schema.ts`:
+Generate a reviewable migration after changing `src/db/schema.ts`:
 
 ```powershell
 pnpm db:generate
@@ -59,22 +64,55 @@ Apply committed migrations to the configured database:
 pnpm db:migrate
 ```
 
-Database code is isolated under `src/db` and `src/data/leads.ts`. Do not import it into Client Components.
+Bootstrap commands and source-content migration commands will refuse to run without explicit configuration. They must not print staff passwords or secrets.
 
-## Key project references
+After applying migrations, seed the reviewable client-supplied source records with `pnpm db:seed-source`. Create the first staff account with `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `DATABASE_URL`, `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL` set, then run `pnpm admin:bootstrap`. Use `pnpm admin:reset-password` for maintainer-controlled recovery and `pnpm media:cleanup` for expired/deferred R2 upload cleanup.
 
+Drizzle is the only production migration owner. Database modules are server-only and must never be imported by Client Components.
+
+## Checks
+
+```powershell
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+pnpm test:e2e
+```
+
+The browser suite uses the machine's existing Google Chrome installation and does not download a separate Playwright browser build.
+
+## Content and security boundaries
+
+- Public inventory queries return published records only.
+- Vehicle publication state is separate from available/reserved/sold state.
+- Site settings are a strict singleton with mapped fields; secrets and executable configuration are never editable content.
+- Public forms repeat validation on the server and pass Turnstile before writes.
+- Every admin page and mutation validates the database-backed staff session on the server.
+- Proxy redirects are an optimistic UX layer, not authorization.
+- R2 credentials remain server-only. Uploads use staff-authorized, short-lived presigned URLs and protected finalization.
+- Image binaries live in R2; PostgreSQL stores metadata, relationships, ordering and alt text.
+
+## External setup
+
+The user/client owns provisioning and credentials for Neon, Cloudflare R2, Turnstile and Vercel. Follow [`upgrade.md`](./upgrade.md), section 17, for the remaining external checklist. Future VPS work is separately deferred.
+
+## Key references
+
+- CMS execution checklist: `upgrade.md`
 - Product and technical scope: `docs/V1-SPECIFICATION.md`
+- Engineering rules: `RULES.md`
 - Completed remediation record: `docs/REMEDIATION-CHECKLIST.md`
 - Approved visual archive: `reference-screenshots/README.md`
-- Static inventory: `src/data/vehicles.ts`
+- Current migration inputs: `src/data/vehicles.ts` and `src/data/site.ts`
 - Lead validation contract: `src/lib/lead-validation.ts`
 - Database schema: `src/db/schema.ts`
+- Operations and external setup details: `docs/OPERATIONS.md`
 
-## TODO backlog
+## Deferred features
 
-- [TODO] Confirm client-approved final content and legal language.
-- [TODO] Configure production Neon and Turnstile credentials before launch.
-- [TODO] Complete final visual matching against every reference screenshot.
-- [TODO] Add a CMS or external inventory feed only if the client approves that requirement.
-- [TODO] Add notifications or CRM delivery only if the client approves that requirement.
-- [TODO] Add a protected lead-management interface only if the client approves that requirement.
+- [TODO] Add protected lead review/status workflows only if the client requests them.
+- [TODO] Add notification delivery only after provider and destination approval.
+- [TODO] Add email-based staff recovery only after a sending provider/domain is approved.
+- [TODO] Add customer accounts only as a separately approved product change.
+- [TODO] Plan future VPS work separately from the current CMS upgrade.

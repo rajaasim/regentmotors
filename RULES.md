@@ -51,11 +51,24 @@ These rules apply to all source code, tests, configuration, documentation and ge
 2. Keep database credentials, Turnstile secrets and other secrets in server-only modules.
 3. Database access must go through the server-only data-access layer.
 4. Client Components must not import database packages, server-only modules or environment secrets.
-5. Static inventory access must remain behind functions such as `getVehicles()` so the storage source can change without rewriting UI components.
-6. Do not introduce a CMS, authentication, administration, notification delivery or independent object storage without an approved requirement.
+5. Inventory and settings access must remain behind typed server-only functions such as `getVehicles()` so storage changes do not rewrite UI components.
+6. The project-owned CMS, staff-only authentication, protected administration and Cloudflare R2 media flow approved in `upgrade.md` are in scope. Do not introduce a different CMS, customer authentication, notification delivery or additional object storage without an approved requirement.
 7. Do not add a dependency when the platform or a small project-owned utility already solves the requirement clearly.
+8. Drizzle is the only production database schema-migration owner.
+9. Public content reads must exclude drafts and archived records.
 
-## 6. Forms and personal data
+## 6. Authentication and administration
+
+1. Staff authentication exists only to protect administration; do not add public registration or customer accounts.
+2. Validate the database-backed session and authorization on every protected Server Component, Server Action and Route Handler.
+3. Proxy checks and hidden UI are usability measures, never authorization boundaries.
+4. Return minimal staff data and never expose password hashes, account credentials, session tokens or verification values.
+5. Do not log passwords, authentication payloads, tokens or complete session objects.
+6. Rate-limit authentication and upload-intent boundaries.
+7. Record material administration mutations with minimal audit metadata and no secrets or complete lead payloads.
+8. Reject unknown fields and validate all administration mutations with strict Zod schemas.
+
+## 7. Forms and personal data
 
 1. Persist only allow-listed fields defined by the server validation schema.
 2. Never persist arbitrary keys submitted by the browser.
@@ -65,7 +78,7 @@ These rules apply to all source code, tests, configuration, documentation and ge
 6. Do not implement email, SMS, Slack or CRM notifications in v1.
 7. Error responses must not reveal credentials, SQL details, stack traces or internal implementation data.
 
-## 7. UI and accessibility
+## 8. UI and accessibility
 
 1. Every interactive element must be keyboard operable.
 2. Use native semantic HTML before adding ARIA.
@@ -76,15 +89,18 @@ These rules apply to all source code, tests, configuration, documentation and ge
 7. No supported viewport may introduce horizontal page scrolling.
 8. Do not reproduce the Lovable editor badge or any demo-host controls.
 
-## 8. Styling and assets
+## 9. Styling and assets
 
 1. Use shared design tokens for project colors, spacing and typography decisions.
 2. Prefer project-owned components over generic component-library styling.
 3. Every meaningful image requires accurate alt text.
 4. Do not hotlink production assets from the demo host. Store approved project assets locally or use the approved production asset service.
 5. Preserve source image quality and aspect ratio.
+6. R2 upload credentials remain server-only; browser uploads require short-lived, staff-authorized presigned URLs and protected finalization.
+7. Store image metadata and relationships in PostgreSQL, never image binaries.
+8. Do not accept caller-controlled arbitrary object keys for deletion or replacement.
 
-## 9. Quality gates
+## 10. Quality gates
 
 1. Before committing, run:
 
@@ -99,7 +115,7 @@ These rules apply to all source code, tests, configuration, documentation and ge
 4. Do not weaken lint, type or test configuration merely to make a failure disappear.
 5. Fix warnings that indicate correctness, security, accessibility or production risk.
 
-## 10. Git and repository hygiene
+## 11. Git and repository hygiene
 
 1. Keep commits focused and use an imperative commit message.
 2. Never commit secrets, `.env.local`, build output, test reports or dependency directories.

@@ -1,60 +1,51 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { AmbientInteractions } from "@/components/ui/ambient-interactions";
+import { getSiteSettings } from "@/data/site-settings-repository";
 
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
+export const dynamic = "force-dynamic";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    title: { default: settings.seo.defaultTitle, template: `%s | ${settings.name}` },
+    description: settings.seo.defaultDescription,
+    openGraph: {
+      type: "website",
+      siteName: settings.name,
+      ...(settings.seo.openGraphImageUrl ? { images: [settings.seo.openGraphImageUrl] } : {}),
+    },
+    ...(settings.faviconUrl ? { icons: { icon: settings.faviconUrl } } : {}),
+  };
+}
 
-export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
-  title: {
-    default: "REGENT MOTORS LLC | Premium Pre-Owned Vehicles",
-    template: "%s | REGENT MOTORS LLC",
-  },
-  description:
-    "Explore a meticulously inspected collection of premium pre-owned vehicles at REGENT MOTORS LLC.",
-  openGraph: {
-    type: "website",
-    siteName: "REGENT MOTORS LLC",
-  },
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className="h-full antialiased"
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <AmbientInteractions />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        <SiteHeader />
+        <SiteHeader name={settings.name} logoUrl={settings.logoUrl} phoneDisplay={settings.phoneDisplay} phoneHref={settings.phoneHref} />
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
+        <SiteFooter settings={settings} />
       </body>
     </html>
   );

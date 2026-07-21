@@ -1,23 +1,28 @@
 import "server-only";
 
-import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { createDatabase } from "@/db/factory";
+import { getDatabaseUrl, ServerConfigurationError } from "@/lib/env/server";
 
-import * as schema from "@/db/schema";
+export { createDatabase } from "@/db/factory";
 
-export class DatabaseUnavailableError extends Error {
+export class DatabaseUnavailableError extends ServerConfigurationError {
   constructor() {
-    super("Database is not configured.");
+    super("Database");
     this.name = "DatabaseUnavailableError";
   }
 }
 
+let database: ReturnType<typeof createDatabase> | undefined;
+
 export function getDatabase() {
-  const connectionString = process.env.DATABASE_URL;
+  try {
+    database ??= createDatabase(getDatabaseUrl());
+    return database;
+  } catch (error) {
+    if (error instanceof ServerConfigurationError) {
+      throw new DatabaseUnavailableError();
+    }
 
-  if (!connectionString) {
-    throw new DatabaseUnavailableError();
+    throw error;
   }
-
-  return drizzle(neon(connectionString), { schema });
 }

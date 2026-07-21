@@ -8,6 +8,20 @@
       "when": 1784282845533,
       "tag": "0000_condemned_lockheed",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784464705042,
+      "tag": "0001_flashy_xavin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784469041555,
+      "tag": "0002_greedy_plazm",
+      "breakpoints": true
     }
   ]
 }

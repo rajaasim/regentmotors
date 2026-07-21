@@ -9,7 +9,7 @@
 
 Regent Motors v1 is a complete, production-ready dealership website for presenting the company, showcasing its current vehicle collection, generating qualified enquiries, and providing clear financing and contact pathways.
 
-The site is intentionally content-static in v1. Vehicle and page content will be maintained in the codebase and released through normal deployments. A content management system is not required unless the client later demonstrates a genuine operational need for independent content editing.
+The site is CMS-backed in v1. Vehicles, approved page content and site settings are maintained through a narrow project-owned administration interface and persisted in PostgreSQL. Vehicle and editable site images use Cloudflare R2. Authentication exists only for approved staff administration; there are no customer accounts.
 
 This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 
@@ -19,8 +19,8 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 2. Present the vehicle collection in a premium, fast and mobile-friendly experience.
 3. Make it easy to enquire about a vehicle, request a test drive, contact the dealership or begin a financing conversation.
 4. Provide strong local-business and inventory SEO foundations.
-5. Launch quickly without speculative CMS, authentication or administration work.
-6. Preserve clean upgrade paths for a CMS, external inventory feed, asset storage, CRM or lead-management dashboard.
+5. Provide a focused staff workflow for maintaining vehicles, images and mapped site settings without introducing a general page builder.
+6. Preserve clean upgrade paths for an external inventory feed, CRM or lead-management dashboard.
 
 ## 3. Scope
 
@@ -36,6 +36,11 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 - Server-side form validation.
 - Bot protection.
 - PostgreSQL persistence for ordinary lead information.
+- PostgreSQL-backed vehicles and mapped site settings.
+- Protected staff-only administration for vehicles and site settings.
+- Better Auth database sessions with no public registration.
+- Cloudflare R2 vehicle and editable site-image storage.
+- Material administration audit records.
 - SEO metadata, sitemap, robots configuration and structured-data foundations.
 - Accessible keyboard navigation, focus states and semantic markup.
 - Production deployment on Vercel.
@@ -43,8 +48,7 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 
 ### 3.2 Explicitly excluded from v1
 
-- CMS or editable administration panel.
-- User accounts or authentication.
+- Customer accounts, customer authentication or public registration.
 - Lead-management dashboard.
 - Email, SMS, Slack or other lead notifications.
 - Automated marketing sequences.
@@ -52,7 +56,7 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 - Storage of highly sensitive financing data.
 - Payments, deposits or e-commerce checkout.
 - Real-time connection to a dealership-management system.
-- Cloudflare R2 or other independent asset-storage service.
+- A general page builder or arbitrary database/content editor.
 - Customer reviews integration.
 - Multilingual content.
 
@@ -60,8 +64,6 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 
 The following may be added later without changing the public-site design:
 
-- [TODO] Add Sanity for page and inventory content only if approved.
-- [TODO] Add Sanity's image pipeline or Cloudflare R2 when independently owned storage is required.
 - [TODO] Add a dealership-management-system inventory feed only if approved.
 - [TODO] Add CRM delivery or notifications only if approved.
 - [TODO] Add a protected lead-management dashboard only if approved.
@@ -155,7 +157,7 @@ The staged presentation may collect only fields approved in the final form inven
 
 ## 6. Content model
 
-All v1 content is maintained in typed source files.
+V1 content is persisted in PostgreSQL and accessed through typed server-only repositories. The existing typed source files are migration inputs and temporary rollback references only.
 
 ### 6.1 Vehicle
 
@@ -163,7 +165,8 @@ All v1 content is maintained in typed source files.
 type Vehicle = {
   id: string;
   slug: string;
-  status: "available" | "reserved" | "sold";
+  publicationStatus: "draft" | "published";
+  inventoryStatus: "available" | "reserved" | "sold";
   featured: boolean;
   year: number;
   make: string;
@@ -184,7 +187,7 @@ type Vehicle = {
 };
 ```
 
-Vehicle access must be centralized behind functions such as `getVehicles()`, `getFeaturedVehicles()` and `getVehicleBySlug()`. This keeps the UI independent from the storage source and allows local data to be replaced by Sanity or an external feed later.
+Vehicle access must be centralized behind functions such as `getVehicles()`, `getFeaturedVehicles()` and `getVehicleBySlug()`. Public queries return published records only. Administration mutations use strict server validation, database-backed authorization and audit records.
 
 ### 6.2 Site settings
 
@@ -196,6 +199,25 @@ Vehicle access must be centralized behind functions such as `getVehicles()`, `ge
 - Social links.
 - Default SEO title and description.
 - Map/directions URL.
+- Approved homepage, financing and contact copy groups.
+- Per-primary-route SEO title and description.
+
+Settings use a strict singleton schema. Routes, navigation structure, secrets, environment configuration, validation enums and executable code are never editable settings.
+
+### 6.3 Staff authentication
+
+- Staff users exist only to access `/admin`.
+- Public sign-up and customer accounts do not exist.
+- Better Auth stores staff users, accounts, sessions and required verification records in PostgreSQL.
+- Every protected page, Server Action and Route Handler performs a server-side session and authorization check.
+- The first administrator is provisioned through a controlled maintainer command.
+
+### 6.4 Media
+
+- Cloudflare R2 stores image binaries.
+- PostgreSQL stores object metadata, relationships, ordering and alt text.
+- Authenticated browser uploads use short-lived presigned URLs followed by protected server verification/finalization.
+- Full-resolution images do not pass through a Vercel Function request body.
 
 ## 7. Forms and lead persistence
 
@@ -268,7 +290,8 @@ The JSON payload is limited to allow-listed fields for the selected form type. A
 ### 8.2 Rendering model
 
 - Public content pages are statically generated where possible.
-- Inventory data is bundled from typed local source files.
+- Published inventory and settings are read from PostgreSQL through server-only repositories.
+- Public content is cached where appropriate and invalidated after authorized administration changes.
 - Filtering and modal interactions run on the client.
 - Form submission endpoints use server-side Route Handlers.
 - Database code must never be included in client bundles.
@@ -278,8 +301,10 @@ The JSON payload is limited to allow-listed fields for the selected form type. A
 ```text
 src/app             Routes, metadata and route handlers
 src/components      Shared and feature components
-src/data            Static content and vehicles
+src/data            Server-only repositories, migration inputs and lead persistence
 src/db              Database connection and schema
+src/lib/auth        Staff authentication and authorization boundaries
+src/lib/storage     R2 media boundaries
 src/lib             Validation, formatting and shared utilities
 src/types           Shared domain types
 public              Optimized local assets
@@ -349,6 +374,13 @@ Expected environment variables:
 
 ```text
 DATABASE_URL
+BETTER_AUTH_SECRET
+BETTER_AUTH_URL
+R2_ACCOUNT_ID
+R2_ACCESS_KEY_ID
+R2_SECRET_ACCESS_KEY
+R2_BUCKET_NAME
+R2_PUBLIC_BASE_URL
 NEXT_PUBLIC_SITE_URL
 NEXT_PUBLIC_TURNSTILE_SITE_KEY
 TURNSTILE_SECRET_KEY
@@ -366,6 +398,9 @@ Development, preview and production environments must use separate Turnstile con
 - Unit coverage for formatters, filters and validation schemas where useful.
 - Playwright smoke coverage for every route.
 - Playwright coverage for inventory filtering and opening/closing vehicle details.
+- Authentication and authorization coverage for administration routes and mutations.
+- Vehicle and site-settings administration coverage.
+- R2 upload-intent and finalization boundary coverage.
 - Form validation tests without submitting real production data.
 
 ### 15.2 Visual checks
@@ -398,13 +433,15 @@ v1 is complete when:
 6. SEO metadata, sitemap and robots configuration are present.
 7. Automated checks and the production build pass.
 8. Preview and production deployments are verified.
-9. Client-supplied business information and legal wording are confirmed.
-10. The site contains no Lovable branding or demo-only controls.
+9. Staff can securely manage vehicles, images and approved settings without public registration.
+10. Draft content cannot leak to public routes, metadata, sitemap or structured data.
+11. Client-supplied business information and legal wording are confirmed.
+12. The site contains no Lovable branding or demo-only controls.
 
 ## 18. TODO: open client inputs
 
-- [TODO] Obtain final logo files and brand usage rules from the client.
-- [TODO] Confirm the business address, telephone and email with the client.
+- Logo asset, `REGENT MOTORS LLC` business name and telephone number are confirmed client-provided facts; preserve them unless the client supplies a replacement.
+- [TODO] Confirm the business address and email with the client.
 - [TODO] Confirm opening hours with the client.
 - [TODO] Obtain verified social profile URLs or omit social links.
 - [TODO] Confirm the final vehicle inventory and image rights.

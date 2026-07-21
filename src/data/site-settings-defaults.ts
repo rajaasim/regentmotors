@@ -1,0 +1,48 @@
+import { siteSettings } from "@/data/site";
+import type { SiteSettingsInput } from "@/lib/site-settings-validation";
+
+export const defaultSiteSettings = {
+  name: siteSettings.name,
+  shortName: siteSettings.shortName,
+  logoUrl: "/images/logo.png",
+  faviconUrl: undefined,
+  phoneDisplay: siteSettings.phoneDisplay,
+  phoneHref: siteSettings.phoneHref,
+  email: siteSettings.email,
+  addressLine1: siteSettings.addressLine1,
+  addressLine2: siteSettings.addressLine2,
+  hours: [...siteSettings.hours],
+  mapUrl: undefined,
+  socialLinks: {},
+  description: siteSettings.description,
+  home: {
+    heroEyebrow: "Welcome to REGENT MOTORS LLC",
+    heroHeading: "Elevate Your Drive.",
+    heroCopy: "Curated luxury performance vehicles for those who refuse to compromise.",
+    primaryCtaLabel: "View inventory",
+    secondaryCtaLabel: "Book a test drive",
+    promiseEyebrow: "The Regent Promise",
+    promiseHeading: "Built On A Foundation Of Excellence",
+    promises: [
+      { title: "Value · Integrity · Performance", copy: "Every vehicle is selected for provenance, condition and long-term value — no compromises and no surprises." },
+      { title: "Stress-Free Financing", copy: "A clear first conversation with transparent expectations and a pathway tailored to the buyer." },
+      { title: "Meticulously Inspected", copy: "Mechanical and cosmetic review, documented history and delivery-ready presentation." },
+    ],
+    conciergeEyebrow: "Concierge sourcing",
+    conciergeHeading: "Can't find the one? We'll source it.",
+    conciergeCopy: "Tell us the make, model and budget. Our buyers use a private network of dealers and auctions to find the right match.",
+    conciergeCtaLabel: "Start car finder",
+  },
+  financingIntroduction: "Start with a clear conversation about the vehicle and the best way to move forward. This form is an enquiry, not a credit application.",
+  contactIntroduction: "Schedule a private viewing, book a test drive or simply ask a question.",
+  consentText: undefined,
+  consentTextVersion: undefined,
+  seo: {
+    defaultTitle: "REGENT MOTORS LLC | Premium Pre-Owned Vehicles",
+    defaultDescription: "Explore a meticulously inspected collection of premium pre-owned vehicles at REGENT MOTORS LLC.",
+    home: { title: "REGENT MOTORS LLC | Premium Pre-Owned Vehicles", description: "Explore a meticulously inspected collection of premium pre-owned vehicles at REGENT MOTORS LLC." },
+    inventory: { title: "Inventory", description: "Browse REGENT MOTORS LLC's curated collection of premium pre-owned vehicles." },
+    financing: { title: "Financing", description: "Start a financing conversation or ask REGENT MOTORS LLC to source your next vehicle." },
+    contact: { title: "Contact", description: "Contact REGENT MOTORS LLC to arrange a viewing, request a test drive or ask a question." },
+  },
+} satisfies SiteSettingsInput;

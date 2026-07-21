@@ -23,8 +23,8 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16" data-reveal>
-        <div className="max-w-xl">
+      <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10" data-reveal>
+        <div className="max-w-xl lg:shrink-0">
           <p className="eyebrow">The Collection</p>
           <h2 className="mt-4 font-serif text-4xl font-medium text-white md:text-5xl">
             Featured Vehicles
@@ -34,12 +34,12 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 md:gap-3" aria-label="Filter featured vehicles by body style">
+        <div className="flex flex-wrap items-center gap-1.5 lg:flex-nowrap lg:justify-end" aria-label="Filter featured vehicles by body style">
           {showcaseBodyStyles.map((style) => (
             <button
               key={style}
               type="button"
-              className={`rounded-full border px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-[0.65rem] font-bold uppercase tracking-[0.14em] transition-all duration-300 ${
                 bodyStyle === style
                   ? "border-gold bg-gold text-background shadow-[0_4px_15px_rgba(197,164,126,0.35)]"
                   : "border-border text-muted hover:bg-white/5 hover:text-white"

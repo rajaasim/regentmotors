@@ -3,14 +3,14 @@ import Link from "next/link";
 
 import { InventoryExplorer } from "@/components/vehicles/inventory-explorer";
 import { getVehicles } from "@/lib/vehicles";
+import { getSiteSettings } from "@/data/site-settings-repository";
 
-export const metadata: Metadata = {
-  title: "Inventory",
-  description:
-    "Browse REGENT MOTORS LLC's curated collection of premium pre-owned vehicles.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return { title: settings.seo.inventory.title, description: settings.seo.inventory.description };
+}
 
-export default function InventoryPage() {
+export default async function InventoryPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border bg-surface py-24 md:py-32">
@@ -40,7 +40,7 @@ export default function InventoryPage() {
 
       <section className="bg-background py-16">
         <div className="max-w-7xl mx-auto px-6" data-reveal>
-          <InventoryExplorer vehicles={getVehicles()} />
+          <InventoryExplorer vehicles={await getVehicles()} />
         </div>
       </section>
     </>

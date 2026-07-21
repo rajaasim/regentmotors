@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { BrandMark } from "@/components/ui/brand-mark";
-import { navigation, siteSettings } from "@/data/site";
+import { navigation } from "@/data/site";
 
 const focusableSelector = "a[href], button:not([disabled])";
 
-export function SiteHeader() {
+export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: string; logoUrl: string; phoneDisplay: string; phoneHref: string }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const mobileNavigationRef = useRef<HTMLDivElement>(null);
@@ -74,7 +74,7 @@ export function SiteHeader() {
     <>
       <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 rounded-full border border-white/10 bg-background/85 px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:top-6 sm:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
-          <BrandMark />
+          <BrandMark name={name} logoUrl={logoUrl} />
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
             {navigation.map((item) => {
@@ -101,8 +101,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-5 md:flex">
-            <a className="text-xs text-muted hover:text-white" href={siteSettings.phoneHref}>
-              {siteSettings.phoneDisplay}
+            <a className="text-xs text-muted hover:text-white" href={phoneHref}>
+              {phoneDisplay}
             </a>
             <Link className="button button-primary button-small" href="/financing">
               Explore financing
@@ -149,10 +149,10 @@ export function SiteHeader() {
             ))}
             <a
               className="mt-3 text-sm text-muted hover:text-white"
-              href={siteSettings.phoneHref}
+              href={phoneHref}
               onClick={closeMobileNavigation}
             >
-              {siteSettings.phoneDisplay}
+              {phoneDisplay}
             </a>
             <Link
               href="/financing"

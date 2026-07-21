@@ -13,6 +13,8 @@ type LeadFormProps = {
   includeSubject?: boolean;
   includeFinderFields?: boolean;
   vehicleId?: string;
+  consentText?: string;
+  consentTextVersion?: string;
 };
 
 type FormStatus =
@@ -29,6 +31,8 @@ export function LeadForm({
   includeSubject = false,
   includeFinderFields = false,
   vehicleId,
+  consentText = "I agree that REGENT MOTORS LLC may use these details to respond to this enquiry.",
+  consentTextVersion = "v1-2026-07",
 }: LeadFormProps) {
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
   const [turnstileToken, setTurnstileToken] = useState("");
@@ -66,7 +70,7 @@ export function LeadForm({
             vehicleId,
             payload,
             consent: data.get("consent") === "on",
-            consentTextVersion: "v1-2026-07",
+            consentTextVersion,
           },
           turnstileToken,
         }),
@@ -137,7 +141,7 @@ export function LeadForm({
 
       <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-muted">
         <input type="checkbox" name="consent" required className="mt-1 accent-gold" />
-        <span>I agree that REGENT MOTORS LLC may use these details to respond to this enquiry.</span>
+        <span>{consentText}</span>
       </label>
 
       <div className="mt-5">

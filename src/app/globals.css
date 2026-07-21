@@ -27,8 +27,8 @@
   --color-border: var(--border);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
 }
 
 /* Custom scrollbar styling: Thin, dark track, gold thumb */
@@ -436,6 +436,31 @@ a {
 
 .animate-pulse-subtle {
   animation: pulseSubtle 3s infinite ease-in-out;
+}
+
+.admin-shell .form-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+}
+
+.admin-shell .form-control {
+  padding: 0.95rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.admin-shell .button {
+  font-size: 0.8rem;
+}
+
+.admin-shell .text-sm {
+  font-size: 0.95rem;
+  line-height: 1.5rem;
+}
+
+.admin-shell .text-xs {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 @keyframes shimmer {

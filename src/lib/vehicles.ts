@@ -1,22 +1,49 @@
+import { DatabaseUnavailableError } from "@/db";
+import {
+  findPublishedVehicleById,
+  findPublishedVehicleBySlug,
+  listFeaturedPublishedVehicles,
+  listPublishedVehicles,
+} from "@/data/vehicle-repository";
 import { vehicles } from "@/data/vehicles";
 import type { BodyStyle } from "@/types/vehicle";
 
-export function getVehicles() {
-  return vehicles;
+export async function getVehicles() {
+  try {
+    return await listPublishedVehicles();
+  } catch (error) {
+    if (error instanceof DatabaseUnavailableError) return vehicles;
+    throw error;
+  }
 }
 
-export function getFeaturedVehicles() {
-  return vehicles.filter((vehicle) => vehicle.featured);
+export async function getFeaturedVehicles() {
+  try {
+    return await listFeaturedPublishedVehicles();
+  } catch (error) {
+    if (error instanceof DatabaseUnavailableError) return vehicles.filter((vehicle) => vehicle.featured);
+    throw error;
+  }
 }
 
-export function getVehicleBySlug(slug: string) {
-  return vehicles.find((vehicle) => vehicle.slug === slug);
+export async function getVehicleBySlug(slug: string) {
+  try {
+    return await findPublishedVehicleBySlug(slug);
+  } catch (error) {
+    if (error instanceof DatabaseUnavailableError) return vehicles.find((vehicle) => vehicle.slug === slug);
+    throw error;
+  }
 }
 
-export function getVehiclesByBodyStyle(bodyStyle: BodyStyle) {
-  return vehicles.filter((vehicle) => vehicle.bodyStyle === bodyStyle);
+export async function getVehiclesByBodyStyle(bodyStyle: BodyStyle) {
+  return (await getVehicles()).filter((vehicle) => vehicle.bodyStyle === bodyStyle);
 }
 
-export function getVehicleById(id: string) {
-  return vehicles.find((vehicle) => vehicle.id === id);
+export async function getVehicleById(id: string) {
+  try {
+    return await findPublishedVehicleById(id);
+  } catch (error) {
+    if (error instanceof DatabaseUnavailableError) return vehicles.find((vehicle) => vehicle.id === id);
+    throw error;
+  }
 }

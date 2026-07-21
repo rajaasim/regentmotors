@@ -1,0 +1,1 @@
+ALTER TABLE "vehicle_images" ALTER COLUMN "vehicle_id" DROP NOT NULL;

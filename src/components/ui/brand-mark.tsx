@@ -1,19 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function BrandMark() {
+export function BrandMark({
+  name = "REGENT MOTORS LLC",
+  logoUrl = "/images/logo.png",
+}: {
+  name?: string;
+  logoUrl?: string;
+}) {
   return (
     <Link
       href="/"
       className="inline-flex items-center"
-      aria-label="REGENT MOTORS LLC home"
+      aria-label={`${name} home`}
     >
       <Image
-        src="/images/logo.png"
+        src={logoUrl}
         alt=""
         width={856}
         height={722}
         priority
+        unoptimized={logoUrl.startsWith("http")}
         className="h-14 w-auto object-contain"
       />
     </Link>

@@ -41,7 +41,7 @@ export const leadSchema = z
     vehicleId: z.string().trim().max(80).optional(),
     payload: approvedPayloadSchema.optional(),
     consent: z.literal(true),
-    consentTextVersion: z.literal("v1-2026-07"),
+    consentTextVersion: z.string().trim().min(1).max(32),
   })
   .strict()
   .refine((lead) => Boolean(lead.email || lead.phone), {

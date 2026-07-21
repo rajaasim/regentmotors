@@ -5,10 +5,13 @@ import {
   TurnstileUnavailableError,
   verifyTurnstile,
 } from "@/lib/turnstile";
+import { hasTrustedMutationOrigin } from "@/lib/security/request-origin";
+import { getSiteSettings } from "@/data/site-settings-repository";
 
 const MAX_BODY_BYTES = 20_000;
 
 export async function POST(request: Request) {
+  if (!hasTrustedMutationOrigin(request)) return Response.json({ error: "Untrusted request origin." }, { status: 403 });
   const contentLength = Number(request.headers.get("content-length") ?? 0);
 
   if (contentLength > MAX_BODY_BYTES) {
@@ -50,7 +53,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await createLead(parsed.data.lead);
+    const settings = await getSiteSettings();
+    const result = await createLead({
+      ...parsed.data.lead,
+      consentTextVersion: settings.consentTextVersion ?? "v1-2026-07",
+    });
     return Response.json(result, { status: 201 });
   } catch (error) {
     if (

@@ -57,3 +57,9 @@ test("vehicle and test-drive enquiries preserve their context", async ({ page })
   await page.goto("/contact?intent=test_drive");
   await expect(page.getByRole("heading", { name: "Book a test drive" })).toBeVisible();
 });
+
+test("protected admin routes redirect unauthenticated visitors", async ({ page }) => {
+  await page.goto("/admin");
+  await expect(page).toHaveURL(/\/admin\/login$/);
+  await expect(page.getByRole("heading", { name: "Sign in securely" })).toBeVisible();
+});

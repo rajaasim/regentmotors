@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 
 import { LeadForm } from "@/components/forms/lead-form";
+import { getSiteSettings } from "@/data/site-settings-repository";
 
-export const metadata: Metadata = {
-  title: "Financing",
-  description:
-    "Start a financing conversation or ask REGENT MOTORS LLC to source your next vehicle.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return { title: settings.seo.financing.title, description: settings.seo.financing.description };
+}
 
-export default function FinancingPage() {
+export default async function FinancingPage() {
+  const settings = await getSiteSettings();
   return (
     <>
       <section className="page-hero">
@@ -18,7 +19,7 @@ export default function FinancingPage() {
             Drive It Home, On Your Terms
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-            Start with a clear conversation about the vehicle and the best way to move forward. This v1 form is an enquiry, not a credit application.
+            {settings.financingIntroduction}
           </p>
         </div>
       </section>
@@ -30,6 +31,8 @@ export default function FinancingPage() {
             title="Start a financing conversation"
             description="Share ordinary contact information only. A full application will be completed through the dealership's approved financing process."
             submitLabel="Save financing enquiry"
+            consentText={settings.consentText}
+            consentTextVersion={settings.consentTextVersion}
           />
 
           <div id="car-finder">
@@ -39,6 +42,8 @@ export default function FinancingPage() {
               description="Tell us what you are searching for and the buying team can continue the conversation."
               submitLabel="Start my search"
               includeFinderFields
+              consentText={settings.consentText}
+              consentTextVersion={settings.consentTextVersion}
             />
           </div>
         </div>
