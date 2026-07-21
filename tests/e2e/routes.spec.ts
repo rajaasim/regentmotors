@@ -58,8 +58,10 @@ test("vehicle and test-drive enquiries preserve their context", async ({ page })
   await expect(page.getByRole("heading", { name: "Book a test drive" })).toBeVisible();
 });
 
-test("protected admin routes redirect unauthenticated visitors", async ({ page }) => {
-  await page.goto("/admin");
-  await expect(page).toHaveURL(/\/admin\/login$/);
-  await expect(page.getByRole("heading", { name: "Sign in securely" })).toBeVisible();
-});
+for (const protectedRoute of ["/admin", "/admin/leads", "/admin/settings"] as const) {
+  test(`${protectedRoute} redirects unauthenticated visitors`, async ({ page }) => {
+    await page.goto(protectedRoute);
+    await expect(page).toHaveURL(/\/admin\/login$/);
+    await expect(page.getByRole("heading", { name: "Sign in securely" })).toBeVisible();
+  });
+}

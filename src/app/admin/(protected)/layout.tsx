@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 const adminNavigation = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/vehicles", label: "Vehicles" },
+  { href: "/admin/leads", label: "Leads" },
   { href: "/admin/settings", label: "Settings" },
 ] as const;
 

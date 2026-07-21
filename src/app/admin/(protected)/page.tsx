@@ -13,6 +13,11 @@ const destinations = [
     copy: "Create drafts, update factual vehicle details, manage availability and publish approved inventory.",
   },
   {
+    href: "/admin/leads",
+    title: "Review leads",
+    copy: "View customer enquiries, contact details, vehicle context and submitted preferences.",
+  },
+  {
     href: "/admin/settings",
     title: "Manage site settings",
     copy: "Update approved business information, page copy and search-sharing metadata.",
@@ -26,7 +31,7 @@ export default function AdminPage() {
       <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
         Choose a content area. Every published change is validated and recorded.
       </p>
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {destinations.map((destination) => (
           <Link
             className="rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-gold/40"

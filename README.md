@@ -1,8 +1,8 @@
 # Regent Motors
 
-Regent Motors is a complete CMS-enabled dealership website. Public visitors can browse the current vehicle collection and submit approved enquiry forms. Authorized staff can manage vehicles, images and mapped site settings through a protected project-owned administration area.
+Regent Motors is a complete CMS-enabled dealership website. Public visitors can browse the current vehicle collection and submit approved enquiry forms. Authorized staff can review leads and manage vehicles, images and mapped site settings through a protected project-owned administration area.
 
-There are no customer accounts or public registration. Staff authentication exists only for `/admin`. Lead submissions remain private PostgreSQL records; notification delivery and lead-management screens are outside the current scope.
+There are no customer accounts or public registration. Staff authentication exists only for `/admin`. Lead submissions remain private PostgreSQL records and are visible through protected staff-only pages. Notification delivery, lead statuses and exports remain outside the current scope.
 
 ## Stack
 
@@ -32,6 +32,8 @@ Staff administration:
 - `/admin/vehicles`
 - `/admin/vehicles/new`
 - `/admin/vehicles/[id]`
+- `/admin/leads`
+- `/admin/leads/[id]`
 - `/admin/settings`
 
 Authentication API requests use `/api/auth/*`. Media upload intents and finalization use protected server boundaries; the browser sends image bytes directly to R2.
@@ -111,7 +113,7 @@ The user/client owns provisioning and credentials for Neon, Cloudflare R2, Turns
 
 ## Deferred features
 
-- [TODO] Add protected lead review/status workflows only if the client requests them.
+- Protected lead review is available in administration. [TODO] Add lead statuses and exports only if the client requests them.
 - [TODO] Add notification delivery only after provider and destination approval.
 - [TODO] Add email-based staff recovery only after a sending provider/domain is approved.
 - [TODO] Add customer accounts only as a separately approved product change.

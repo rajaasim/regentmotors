@@ -16,8 +16,8 @@
 - [x] Do not add public registration, customer accounts or customer login.
 - [x] Treat leads as public form submissions, not user accounts.
 - [x] Keep email, SMS, Slack and CRM notifications out of this upgrade.
-- [x] Keep the initial admin focused on vehicles and mapped site settings.
-- [x] Defer protected lead-management screens until the client explicitly requests them.
+- [x] Keep the initial admin focused on leads, vehicles and mapped site settings.
+- [x] Add protected read-only lead-management screens after the client explicitly requested them.
 - [x] Use Vercel Hobby only for development, testing and client review.
 - [x] Leave future VPS work outside this checklist.
 
@@ -28,7 +28,7 @@
 - [x] Update `RULES.md` so the approved CMS, authentication, admin and R2 boundaries are permitted without weakening existing safety rules.
 - [x] Update `README.md` with the CMS architecture, local setup, migrations, admin bootstrap and testing workflow.
 - [x] Update `.env.example` with every required non-secret environment variable and safe format hints.
-- [x] Keep email notifications, customer accounts, lead-management UI and generalized page-building explicitly excluded.
+- [x] Keep email notifications, customer accounts, lead-status workflows, exports and generalized page-building explicitly excluded.
 - [x] Document the difference between public leads, staff users and sessions.
 - [x] Document that secrets and infrastructure configuration are never editable site settings.
 
@@ -102,7 +102,7 @@
 
 - [x] Add `/admin/login` with accessible labels, errors, focus handling and status messages.
 - [x] Add a protected `/admin` layout with server-side authorization.
-- [x] Add concise admin navigation for Overview, Vehicles and Settings only.
+- [x] Add concise admin navigation for Overview, Vehicles, Leads and Settings only.
 - [x] Add an admin overview without fake metrics, charts, activity or placeholder controls.
 - [x] Add an explicit logout control.
 - [x] Ensure every admin interaction is keyboard operable with visible focus states.
@@ -195,11 +195,13 @@
 
 - [x] Confirm every existing lead form still uses client usability validation and authoritative server Zod validation.
 - [x] Confirm Turnstile verification occurs before every lead write.
+- [x] Add protected, paginated lead listing and detail pages without introducing a public lead API.
+- [x] Keep lead review read-only and display only allow-listed persisted fields.
 - [x] Preserve allow-listed per-form payload fields and reject arbitrary browser keys.
 - [x] Preserve the rule that email is required when phone is absent and phone is required when email is absent.
 - [x] Add a stable vehicle reference/display snapshot where needed for historical enquiries.
 - [x] Prevent vehicle lifecycle changes from deleting or corrupting lead history.
-- [x] Ensure no lead data is exposed through public or admin content APIs.
+- [x] Ensure no lead data is exposed through public or unprotected admin content APIs.
 - [x] Ensure complete lead payloads are not logged or placed in analytics.
 - [x] Keep email/message notifications absent.
 - [x] Keep sensitive financing and identity information rejected.
@@ -249,7 +251,7 @@
 - [x] Document Vercel environment variables and testing deployment steps.
 - [x] Document backup/export expectations for PostgreSQL and R2.
 - [x] Document that customer accounts and public registration do not exist.
-- [x] Document deferred notification and lead-management features with `[TODO]` markers.
+- [x] Document deferred notification, lead-status and export features with `[TODO]` markers.
 - [x] Update this checklist after every completed implementation group.
 
 ## 17. External account, credential and client steps
@@ -264,7 +266,7 @@ These are intentionally owned by the user/client. The implementation goal may fi
 - [x] [EXTERNAL] Add documented environment variables to Vercel development/preview environments.
 - [x] [EXTERNAL] Configure Turnstile keys and allowed hostnames for preview testing.
 - [x] [EXTERNAL] Run reviewed production/service migrations against the supplied Neon project.
-- [ ] [EXTERNAL] Bootstrap the real first administrator through the documented secure command.
+- [x] [EXTERNAL] Bootstrap the real first administrator through the documented secure command.
 - [x] [EXTERNAL] Perform the private Vercel client-review deployment.
 - [ ] [EXTERNAL][TODO] Confirm the final business email, address, hours, map/directions URL and verified social profiles.
 - [ ] [EXTERNAL][TODO] Confirm the final vehicle inventory, VIN publication rule and image rights.
@@ -277,7 +279,8 @@ These are intentionally owned by the user/client. The implementation goal may fi
 
 ## 18. Deferred features outside this goal
 
-- [ ] [TODO] Add protected lead review and lead-status workflows only if the client requests them.
+- [x] Add protected lead review after the client requested it.
+- [ ] [TODO] Add lead-status workflows and exports only if the client requests them.
 - [ ] [TODO] Add email, SMS, Slack or CRM notifications only after provider and destination approval.
 - [ ] [TODO] Add email-based staff password recovery only after a sending provider/domain is approved.
 - [ ] [TODO] Add staff invitations and editor-role management only when multiple staff users are confirmed.
@@ -295,7 +298,7 @@ The CMS upgrade goal is complete when:
 - [x] Only section 17 external account/credential/client items and section 18 explicitly deferred features remain open.
 - [x] The application has no placeholder/mock production content, no loose types and no unmarked deferrals.
 - [x] Public pages, forms and accessibility behavior have no regressions.
-- [x] The staff-only admin, vehicle workflow, settings workflow, authentication and R2 integration are complete and verified at every locally testable boundary.
+- [x] The staff-only lead review, vehicle workflow, settings workflow, authentication and R2 integration are complete and verified at every locally testable boundary.
 - [x] Lint, type checking, production build and relevant automated tests pass.
 
 ## 20. Official implementation references

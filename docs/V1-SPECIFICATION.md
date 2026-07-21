@@ -19,7 +19,7 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 2. Present the vehicle collection in a premium, fast and mobile-friendly experience.
 3. Make it easy to enquire about a vehicle, request a test drive, contact the dealership or begin a financing conversation.
 4. Provide strong local-business and inventory SEO foundations.
-5. Provide a focused staff workflow for maintaining vehicles, images and mapped site settings without introducing a general page builder.
+5. Provide a focused staff workflow for reviewing leads and maintaining vehicles, images and mapped site settings without introducing a general page builder.
 6. Preserve clean upgrade paths for an external inventory feed, CRM or lead-management dashboard.
 
 ## 3. Scope
@@ -37,7 +37,7 @@ This is a full v1 for the agreed scope, not an MVP or disposable prototype.
 - Bot protection.
 - PostgreSQL persistence for ordinary lead information.
 - PostgreSQL-backed vehicles and mapped site settings.
-- Protected staff-only administration for vehicles and site settings.
+- Protected staff-only administration for leads, vehicles and site settings.
 - Better Auth database sessions with no public registration.
 - Cloudflare R2 vehicle and editable site-image storage.
 - Material administration audit records.
@@ -66,7 +66,7 @@ The following may be added later without changing the public-site design:
 
 - [TODO] Add a dealership-management-system inventory feed only if approved.
 - [TODO] Add CRM delivery or notifications only if approved.
-- [TODO] Add a protected lead-management dashboard only if approved.
+- Protected read-only lead review for authenticated staff.
 - [TODO] Add CSV exports and lead-status workflows only if approved.
 - [TODO] Add analytics and advertising integrations beyond the approved v1 baseline only if approved.
 - [TODO] Add a full financing-provider integration only if approved.
@@ -270,6 +270,7 @@ The JSON payload is limited to allow-listed fields for the selected form type. A
 - Establish a retention policy with the client before production launch.
 - Restrict production database access to authorized project maintainers.
 - Do not expose a public lead-listing API.
+- Display complete lead details only inside server-authorized staff pages.
 
 ## 8. Technical architecture
 
@@ -433,7 +434,7 @@ v1 is complete when:
 6. SEO metadata, sitemap and robots configuration are present.
 7. Automated checks and the production build pass.
 8. Preview and production deployments are verified.
-9. Staff can securely manage vehicles, images and approved settings without public registration.
+9. Staff can securely review leads and manage vehicles, images and approved settings without public registration.
 10. Draft content cannot leak to public routes, metadata, sitemap or structured data.
 11. Client-supplied business information and legal wording are confirmed.
 12. The site contains no Lovable branding or demo-only controls.
