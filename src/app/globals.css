@@ -132,6 +132,13 @@ a {
   }
 }
 
+.vehicle-card-action::after {
+  position: absolute;
+  z-index: 30;
+  inset: 0;
+  content: "";
+}
+
 @layer components {
   .site-container {
     width: min(100% - 2rem, 1280px);
@@ -159,6 +166,9 @@ a {
   }
 
   .button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: inline-flex;
     min-height: 3rem;
     align-items: center;
@@ -185,9 +195,27 @@ a {
     box-shadow: 0 12px 35px rgba(197, 164, 126, 0.15);
   }
 
+  .button-primary::before {
+    position: absolute;
+    inset: -40% auto -40% -70%;
+    width: 42%;
+    transform: skewX(-18deg) translateX(-180%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.62), transparent);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .button-primary:hover {
     filter: brightness(1.08);
     transform: translateY(-1px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .button-primary:not(:disabled):hover::before {
+      animation: shimmer 760ms ease-out;
+      opacity: 1;
+    }
   }
 
   .button-primary:disabled {
@@ -287,6 +315,45 @@ a {
     outline: none;
   }
 
+  .floating-field {
+    position: relative;
+    display: block;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .floating-field .form-control {
+    min-height: 3.4rem;
+    padding: 1.35rem 2.5rem 0.45rem 0.9rem;
+  }
+
+  .floating-label {
+    position: absolute;
+    top: 1.05rem;
+    left: 0.9rem;
+    max-width: calc(100% - 3.5rem);
+    transform-origin: left top;
+    transition: color 160ms ease, font-size 160ms ease, transform 160ms ease;
+    pointer-events: none;
+  }
+
+  .floating-field .form-control:focus + .floating-label,
+  .floating-field .form-control:not(:placeholder-shown) + .floating-label {
+    color: var(--gold);
+    font-size: 0.5rem;
+    transform: translateY(-0.62rem);
+  }
+
+  .field-validation-icon {
+    position: absolute;
+    top: 1rem;
+    right: 0.95rem;
+    font-size: 0.9rem;
+  }
+
   .skip-link {
     position: fixed;
     top: 0.75rem;
@@ -304,6 +371,85 @@ a {
   .skip-link:focus {
     transform: translateY(0);
   }
+}
+
+.success-check {
+  width: 5.5rem;
+  color: var(--gold);
+}
+
+.success-check-circle,
+.success-check-mark {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.range-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 1.5rem;
+  background: transparent;
+}
+
+.range-input::-webkit-slider-thumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.18rem;
+  appearance: none;
+  border: 2px solid #0a0a0b;
+  border-radius: 999px;
+  background: var(--gold-light);
+  box-shadow: 0 0 0 1px var(--gold), 0 4px 15px rgba(0, 0, 0, 0.55);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.range-input::-moz-range-track {
+  height: 1.5rem;
+  background: transparent;
+}
+
+.range-input::-moz-range-thumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid #0a0a0b;
+  border-radius: 999px;
+  background: var(--gold-light);
+  box-shadow: 0 0 0 1px var(--gold), 0 4px 15px rgba(0, 0, 0, 0.55);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.range-input:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.range-input:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.success-check-circle {
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  stroke-width: 1.5;
+  animation: successCircle 650ms ease-out forwards;
+}
+
+.success-check-mark {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  stroke-width: 2.5;
+  animation: successMark 420ms 440ms ease-out forwards;
 }
 
 /* Progressive ambient motion: content stays visible until the client enhancer is ready. */
@@ -376,6 +522,16 @@ a {
 
   [data-cursor-reveal]:hover::after {
     opacity: 1;
+  }
+
+  .hero-spotlight[data-cursor-reveal]::after {
+    z-index: 5;
+    background: radial-gradient(
+      520px circle at var(--cursor-x) var(--cursor-y),
+      rgba(197, 164, 126, 0.12),
+      transparent 70%
+    );
+    mix-blend-mode: screen;
   }
 }
 
@@ -464,6 +620,14 @@ a {
 }
 
 @keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(200%); }
+  from { transform: skewX(-18deg) translateX(-220%); }
+  to { transform: skewX(-18deg) translateX(420%); }
+}
+
+@keyframes successCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes successMark {
+  to { stroke-dashoffset: 0; }
 }

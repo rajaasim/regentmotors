@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useId, useState } from "react";
 
+import { LeadSuccessDialog } from "@/components/forms/lead-success-dialog";
 import { TurnstileWidget } from "@/components/forms/turnstile-widget";
 import type { LeadInput } from "@/lib/lead-validation";
 
@@ -38,6 +39,7 @@ export function LeadForm({
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileReset, setTurnstileReset] = useState(0);
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+  const closeSuccessDialog = useCallback(() => setStatus({ state: "idle" }), []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -102,17 +104,18 @@ export function LeadForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-xl border border-border bg-surface p-6 sm:p-8"
-      data-cursor-reveal
-      data-reveal="fade"
-    >
+    <>
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-xl border border-border bg-surface p-6 sm:p-8"
+        data-cursor-reveal
+        data-reveal="fade"
+      >
       <p className="eyebrow">Send an enquiry</p>
       <h2 className="mt-4 text-2xl font-semibold text-white">{title}</h2>
       {description ? <p className="mt-3 text-sm leading-6 text-muted">{description}</p> : null}
 
-      <div className="mt-7 grid gap-5 sm:grid-cols-2">
+      <div className="mt-7 grid gap-5 sm:grid-cols-2" key={turnstileReset}>
         <TextField label="Full name" name="fullName" required />
         <TextField label="Email" name="email" type="email" />
         <TextField label="Phone" name="phone" type="tel" />
@@ -122,8 +125,8 @@ export function LeadForm({
           <>
             <TextField label="Make" name="make" />
             <TextField label="Model" name="model" />
-            <TextField label="Year range" name="yearRange" placeholder="e.g. 2022–2024" />
-            <TextField label="Maximum budget" name="maxBudget" placeholder="$" />
+            <TextField label="Year range" name="yearRange" hint="e.g. 2022–2024" />
+            <TextField label="Maximum budget" name="maxBudget" hint="Enter an amount in USD" />
             <TextField label="Maximum mileage" name="maxMileage" />
           </>
         ) : null}
@@ -164,13 +167,21 @@ export function LeadForm({
         {status.state === "submitting" ? "Saving enquiry..." : submitLabel}
       </button>
 
-      <div className="mt-4 min-h-6 text-sm" aria-live="polite">
+      <div className="mt-4 min-h-6 text-sm" aria-live="polite" role="status">
         {status.state === "success" ? (
-          <p className="text-emerald-400">Saved successfully. Reference: {status.reference}</p>
+          <p className="sr-only">Enquiry received. Reference: {status.reference}</p>
         ) : null}
         {status.state === "error" ? <p className="text-red-400">{status.message}</p> : null}
       </div>
-    </form>
+      </form>
+
+      {status.state === "success" ? (
+        <LeadSuccessDialog
+          reference={status.reference}
+          onClose={closeSuccessDialog}
+        />
+      ) : null}
+    </>
   );
 }
 
@@ -189,25 +200,71 @@ function TextField({
   label,
   name,
   type = "text",
-  placeholder,
+  hint,
   required = false,
 }: {
   label: string;
   name: string;
   type?: string;
-  placeholder?: string;
+  hint?: string;
   required?: boolean;
 }) {
+  const hintId = useId();
+  const errorId = useId();
+  const [validationState, setValidationState] = useState<"idle" | "valid" | "invalid">("idle");
+  const [isTouched, setIsTouched] = useState(false);
+  const supportsFormatValidation = type === "email" || type === "tel";
+
+  function validate(value: string) {
+    if (!supportsFormatValidation || value.trim() === "") {
+      setValidationState("idle");
+      return;
+    }
+
+    const isValid = type === "email"
+      ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+      : value.replace(/\D/g, "").length >= 7;
+    setValidationState(isValid ? "valid" : "invalid");
+  }
+
+  const describedBy = validationState === "invalid"
+    ? errorId
+    : hint
+      ? hintId
+      : undefined;
+
   return (
-    <label className="form-label">
-      {label}
+    <label className="floating-field">
       <input
-        className="form-control mt-2"
+        aria-describedby={describedBy}
+        aria-invalid={validationState === "invalid" || undefined}
+        className="form-control peer"
         name={name}
         type={type}
-        placeholder={placeholder}
+        placeholder=" "
         required={required}
+        onBlur={(event) => {
+          setIsTouched(true);
+          validate(event.currentTarget.value);
+        }}
+        onChange={(event) => {
+          if (isTouched) validate(event.currentTarget.value);
+        }}
       />
+      <span className="floating-label">
+        {label}{required ? <span aria-hidden="true"> *</span> : null}
+      </span>
+      {validationState === "valid" ? (
+        <span className="field-validation-icon text-gold" aria-label={`${label} format verified`} role="img">✓</span>
+      ) : null}
+      {hint && validationState !== "invalid" ? (
+        <span className="mt-2 block text-[0.68rem] normal-case tracking-normal text-muted" id={hintId}>{hint}</span>
+      ) : null}
+      {validationState === "invalid" ? (
+        <span className="mt-2 block text-[0.68rem] normal-case tracking-normal text-red-400" id={errorId}>
+          Enter a valid {type === "email" ? "email address" : "phone number"}.
+        </span>
+      ) : null}
     </label>
   );
 }

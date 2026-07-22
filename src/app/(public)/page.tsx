@@ -18,7 +18,7 @@ export default async function HomePage() {
   return (
     <>
       <section
-        className="relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen"
+        className="hero-spotlight relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen"
         data-cursor-reveal
       >
         <Image

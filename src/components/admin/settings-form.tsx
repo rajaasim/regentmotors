@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent, ReactNode } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { SiteSettingsInput } from "@/lib/site-settings-validation";
@@ -28,6 +28,24 @@ export function SettingsForm({ settings }: SettingsFormProps) {
   const [logoUrl, setLogoUrl] = useState(settings.logoUrl);
   const [faviconUrl, setFaviconUrl] = useState(settings.faviconUrl ?? "");
   const [openGraphImageUrl, setOpenGraphImageUrl] = useState(settings.seo.openGraphImageUrl ?? "");
+  const contentRef = useRef<HTMLDivElement>(null);
+  const hasSelectedSection = useRef(false);
+
+  useEffect(() => {
+    if (!hasSelectedSection.current) {
+      hasSelectedSection.current = true;
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth";
+      contentRef.current?.scrollIntoView({ behavior, block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [activeSection]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -112,7 +130,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
   return (
     <form className="mt-8" noValidate onSubmit={handleSubmit}>
       <div className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-start">
-        <aside className="rounded-2xl border border-border bg-surface p-3 lg:sticky lg:top-28">
+        <aside className="rounded-2xl border border-border bg-surface p-3 lg:sticky lg:top-6">
           <nav aria-label="Settings categories" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
             {settingsSections.map((section) => {
               const isActive = section.id === activeSection;
@@ -137,7 +155,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           </nav>
         </aside>
 
-        <div>
+        <div className="scroll-mt-6" ref={contentRef}>
           <div data-settings-section="business" hidden={activeSection !== "business"} id="settings-panel-business">
             <SettingsGroup legend="Business identity" disabled={isPending}>
               <Field label="Business name" name="name" defaultValue={settings.name} />
