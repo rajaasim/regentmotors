@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { VehicleLightbox } from "@/components/vehicles/vehicle-lightbox";
 import type { Vehicle } from "@/types/vehicle";
@@ -77,7 +78,7 @@ export function VehicleDetailDialog({
     };
   }, [vehicle, closeDialog]);
 
-  if (!vehicle) return null;
+  if (!vehicle || typeof document === "undefined") return null;
 
   const activeImage = vehicle.images[activeImageIndex] ?? vehicle.images[0];
   if (!activeImage) return null;
@@ -85,9 +86,10 @@ export function VehicleDetailDialog({
   const financed = vehicle.price * (1 - downPayment / 100);
   const monthly = Math.round((financed * 1.075) / term);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+      className="dialog-scroll-surface fixed inset-0 z-50 h-dvh overflow-y-auto overscroll-contain bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+      data-vehicle-dialog-scroll
       onMouseDown={(event) => {
         if (event.currentTarget === event.target) closeDialog();
       }}
@@ -234,7 +236,8 @@ export function VehicleDetailDialog({
           onIndexChange={setActiveImageIndex}
         />
       ) : null}
-    </div>
+    </div>,
+    document.body,
   );
 }
 
