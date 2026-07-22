@@ -72,7 +72,7 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
 
   return (
     <>
-      <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 rounded-full border border-white/10 bg-background/85 px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:top-6 sm:px-8">
+      <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 rounded-full border border-white/10 bg-background/85 px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl backdrop-saturate-150 sm:top-6 sm:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
           <BrandMark name={name} logoUrl={logoUrl} />
 

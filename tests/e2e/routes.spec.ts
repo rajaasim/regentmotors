@@ -24,14 +24,22 @@ test("inventory filters and opens vehicle details", async ({ page }) => {
   await expect(bodyStyle).toBeVisible();
   await bodyStyle.selectOption("coupe");
   await expect(page.getByText("2 vehicles available")).toBeVisible();
+  const activeFilter = page.getByRole("button", { name: "Remove coupe filter" });
+  await expect(activeFilter).toBeVisible();
 
   const vantageCard = page.getByRole("article").filter({
     has: page.getByRole("heading", { name: "Aston Martin Vantage" }),
   });
   await vantageCard.getByRole("button", { name: "View details" }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.getByRole("dialog", { name: /Aston Martin Vantage/ })).toBeVisible();
+  await page.getByRole("button", { name: "Open full-screen vehicle gallery" }).click();
+  await expect(page.getByRole("dialog", { name: "Vehicle image gallery" })).toBeVisible();
+  await page.getByRole("button", { name: "Close image gallery" }).click();
   await page.getByRole("button", { name: "Close vehicle details" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
+
+  await activeFilter.click();
+  await expect(page.getByText("9 vehicles available")).toBeVisible();
 });
 
 test("mobile navigation closes with Escape and restores focus", async ({ page }) => {
@@ -56,6 +64,9 @@ test("vehicle and test-drive enquiries preserve their context", async ({ page })
 
   await page.goto("/contact?intent=test_drive");
   await expect(page.getByRole("heading", { name: "Book a test drive" })).toBeVisible();
+
+  await page.goto("/financing?vehicle=veh-maserati-ghibli-2023");
+  await expect(page.getByRole("heading", { name: "Discuss financing the 2023 Maserati Ghibli" })).toBeVisible();
 });
 
 for (const protectedRoute of ["/admin", "/admin/leads", "/admin/settings"] as const) {
@@ -63,5 +74,7 @@ for (const protectedRoute of ["/admin", "/admin/leads", "/admin/settings"] as co
     await page.goto(protectedRoute);
     await expect(page).toHaveURL(/\/admin\/login$/);
     await expect(page.getByRole("heading", { name: "Sign in securely" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Primary" })).toHaveCount(0);
+    await expect(page.getByRole("contentinfo")).toHaveCount(0);
   });
 }

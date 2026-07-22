@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
-import { AmbientInteractions } from "@/components/ui/ambient-interactions";
 import { getSiteSettings } from "@/data/site-settings-repository";
 
 import "./globals.css";
@@ -24,28 +21,19 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
   return (
     <html
       lang="en"
       className="h-full antialiased"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col" suppressHydrationWarning>
-        <AmbientInteractions />
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <SiteHeader name={settings.name} logoUrl={settings.logoUrl} phoneDisplay={settings.phoneDisplay} phoneHref={settings.phoneHref} />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter settings={settings} />
+      <body className="min-h-full" suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );

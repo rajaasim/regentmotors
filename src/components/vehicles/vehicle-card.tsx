@@ -17,9 +17,11 @@ export function VehicleCard({
   vehicle: Vehicle;
   onSelect: (vehicle: Vehicle) => void;
 }) {
+  const previewImage = vehicle.images[1];
+
   return (
     <article
-      className="premium-card-hover group overflow-hidden rounded-xl border border-border bg-surface"
+      className="premium-card-hover group relative overflow-hidden rounded-xl border border-border bg-surface focus-within:border-gold/70"
       data-cursor-reveal
       data-reveal="fade"
     >
@@ -29,11 +31,35 @@ export function VehicleCard({
           alt={vehicle.images[0].alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition duration-700 group-hover:scale-105"
+          className={`object-cover transition duration-700 group-hover:scale-105 ${
+            previewImage ? "group-hover:opacity-0" : ""
+          }`}
         />
-        <span className="absolute left-4 top-4 rounded-sm border border-gold/50 bg-black/70 px-2 py-1 text-[0.55rem] uppercase tracking-[0.16em] text-gold">
-          {vehicle.bodyStyle}
-        </span>
+        {previewImage ? (
+          <Image
+            alt={previewImage.alt}
+            className="object-cover opacity-0 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            src={previewImage.src}
+          />
+        ) : null}
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+          <span className="rounded-sm border border-gold/50 bg-black/70 px-2 py-1 text-[0.55rem] uppercase tracking-[0.16em] text-gold">
+            {vehicle.bodyStyle}
+          </span>
+          {vehicle.status !== "available" ? (
+            <span className="rounded-sm border border-white/25 bg-black/75 px-2 py-1 text-[0.55rem] uppercase tracking-[0.16em] text-white">
+              {vehicle.status}
+            </span>
+          ) : null}
+        </div>
+        {previewImage ? (
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+            <span className="size-1.5 rounded-full bg-white transition group-hover:bg-white/45" />
+            <span className="size-1.5 rounded-full bg-white/45 transition group-hover:bg-gold" />
+          </div>
+        ) : null}
       </div>
 
       <div className="p-6 sm:p-7">
@@ -68,7 +94,7 @@ export function VehicleCard({
           </div>
           <button
             type="button"
-            className="text-right text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted transition hover:text-gold"
+            className="vehicle-card-action text-right text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted transition hover:text-gold focus-visible:text-gold"
             aria-label={`View details for ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
             onClick={() => onSelect(vehicle)}
           >
