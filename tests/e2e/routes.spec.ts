@@ -17,6 +17,7 @@ for (const route of routes) {
 }
 
 test("inventory filters and opens vehicle details", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 640 });
   await page.goto("/inventory");
 
   await expect(page.locator('[data-hydrated="true"]')).toBeVisible();
@@ -31,9 +32,21 @@ test("inventory filters and opens vehicle details", async ({ page }) => {
     has: page.getByRole("heading", { name: "Aston Martin Vantage" }),
   });
   await vantageCard.getByRole("button", { name: "View details" }).click();
-  await expect(page.getByRole("dialog", { name: /Aston Martin Vantage/ })).toBeVisible();
+  const vehicleDialog = page.getByRole("dialog", { name: /Aston Martin Vantage/ });
+  const dialogScrollSurface = page.locator("[data-vehicle-dialog-scroll]");
+  await expect(vehicleDialog).toBeVisible();
+  expect(await dialogScrollSurface.evaluate((element) => element.parentElement === document.body)).toBe(true);
+  await dialogScrollSurface.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  expect(await dialogScrollSurface.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+  await dialogScrollSurface.evaluate((element) => {
+    element.scrollTop = 0;
+  });
   await page.getByRole("button", { name: "Open full-screen vehicle gallery" }).click();
-  await expect(page.getByRole("dialog", { name: "Vehicle image gallery" })).toBeVisible();
+  const lightbox = page.getByRole("dialog", { name: "Vehicle image gallery" });
+  await expect(lightbox).toBeVisible();
+  await expect(page.locator("[data-vehicle-lightbox]")).toHaveCSS("overflow-y", "auto");
   await page.getByRole("button", { name: "Close image gallery" }).click();
   await page.getByRole("button", { name: "Close vehicle details" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);

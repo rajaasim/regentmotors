@@ -90,7 +90,8 @@ export function VehicleLightbox({
     <div
       aria-labelledby={titleId}
       aria-modal="true"
-      className="fixed inset-0 z-[60] flex flex-col bg-black/96 p-3 backdrop-blur-xl sm:p-6"
+      className="dialog-scroll-surface fixed inset-0 z-[60] flex h-dvh flex-col overflow-y-auto overscroll-contain bg-black/96 p-3 backdrop-blur-xl sm:p-6"
+      data-vehicle-lightbox
       ref={dialogRef}
       role="dialog"
     >
@@ -128,7 +129,7 @@ export function VehicleLightbox({
         </div>
       </div>
 
-      <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-white/10 bg-[#050505]">
+      <div className="scrollbar-luxury relative min-h-64 flex-1 overflow-auto overscroll-contain rounded-xl border border-white/10 bg-[#050505]">
         <Image
           alt={activeImage.alt}
           className="object-contain transition-transform duration-300"

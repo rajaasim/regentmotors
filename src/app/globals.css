@@ -473,8 +473,13 @@ a {
 
 [data-reveal].is-reveal-ready.is-revealed {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: none;
   will-change: auto;
+}
+
+.dialog-scroll-surface {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
 }
 
 [data-reveal-stagger] > [data-reveal]:nth-child(2) {
