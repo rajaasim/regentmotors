@@ -39,7 +39,7 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
             <button
               key={style}
               type="button"
-              className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-[0.65rem] font-bold uppercase tracking-[0.14em] transition-all duration-300 ${
+              className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
                 bodyStyle === style
                   ? "border-gold bg-gold text-background shadow-[0_4px_15px_rgba(197,164,126,0.35)]"
                   : "border-border text-muted hover:bg-surface hover:text-foreground"

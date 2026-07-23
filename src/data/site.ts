@@ -5,8 +5,8 @@ export const siteSettings = {
   phoneDisplay: "+1 (848) 222-1811",
   phoneHref: "tel:+18482221811",
   email: "info@regentmotors.ca",
-  addressLine1: "39c Chambers Brg Rd #25e",
-  addressLine2: "Lakewood, NJ 08701, USA",
+  addressLine1: undefined,
+  addressLine2: undefined,
   hours: ["Mon–Sat · 9:00 – 19:00", "Sun · By Appointment"],
   description:
     "A meticulously inspected collection of premium pre-owned vehicles, driven by trust and backed by quality.",

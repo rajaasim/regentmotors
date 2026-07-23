@@ -14,14 +14,14 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --background: #f6f2eb;
-  --surface: #fffdf9;
-  --surface-raised: #ece5da;
-  --foreground: #211d18;
-  --muted: #6d655b;
-  --border: rgba(55, 45, 34, 0.14);
-  --gold: #8b6639;
-  --gold-light: #b58a52;
+  --background: #ffffff;
+  --surface: #f7f7f7;
+  --surface-raised: #ededed;
+  --foreground: #151515;
+  --muted: #5f6368;
+  --border: rgba(20, 20, 20, 0.13);
+  --gold: #76572f;
+  --gold-light: #9b7544;
 }
 
 @theme inline {
@@ -180,9 +180,9 @@ a {
 
   .eyebrow {
     color: var(--gold);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
   }
 
@@ -197,7 +197,7 @@ a {
     gap: 0.65rem;
     border-radius: 0.25rem;
     padding: 0.75rem 1.5rem;
-    font-size: 0.66rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -258,7 +258,7 @@ a {
   .nav-link {
     position: relative;
     padding-block: 1.65rem;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     color: var(--muted);
     transition: color 160ms ease;
   }
@@ -279,7 +279,8 @@ a {
   }
 
   .footer-link {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
     color: var(--muted);
     transition: color 160ms ease;
   }
@@ -294,7 +295,7 @@ a {
     border-radius: 0.5rem;
     padding: 0.9rem 1rem;
     color: var(--muted);
-    font-size: 0.58rem;
+    font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     transition: 160ms ease;
@@ -308,7 +309,7 @@ a {
 
   .form-label {
     color: var(--muted);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -340,7 +341,7 @@ a {
     position: relative;
     display: block;
     color: var(--muted);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -364,7 +365,7 @@ a {
   .floating-field .form-control:focus + .floating-label,
   .floating-field .form-control:not(:placeholder-shown) + .floating-label {
     color: var(--gold);
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     transform: translateY(-0.62rem);
   }
 
@@ -401,6 +402,31 @@ a {
     rgba(5, 5, 6, 0.42) 48%,
     rgba(5, 5, 6, 0.8)
   );
+}
+
+.hero-car-motion {
+  position: absolute;
+  z-index: -20;
+  inset: -4% -12%;
+  transform: translate3d(var(--hero-drive-x, 0), var(--hero-drive-y, 0), 0)
+    scale(var(--hero-drive-scale, 1.04));
+  transform-origin: 54% 66%;
+  will-change: transform;
+}
+
+.hero-car-motion img {
+  object-fit: cover;
+  object-position: center;
+}
+
+:root[data-theme="light"] .public-shell .premium-card-hover:hover {
+  border-color: rgba(20, 20, 20, 0.22);
+  box-shadow: 0 20px 40px -20px rgba(20, 20, 20, 0.24);
+}
+
+.public-shell .text-xs {
+  font-size: 0.8125rem;
+  line-height: 1.3rem;
 }
 
 .theme-toggle {
@@ -637,6 +663,10 @@ a {
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .hero-car-motion {
+    transform: scale(1.04) !important;
   }
 }
 

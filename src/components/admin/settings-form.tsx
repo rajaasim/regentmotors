@@ -10,12 +10,13 @@ import { SiteImageUpload } from "@/components/admin/site-image-upload";
 type SettingsFormProps = { settings: SiteSettingsInput };
 
 const settingsSections = [
-  { id: "business", label: "Business identity", description: "Name, branding and public description" },
-  { id: "contact", label: "Contact details", description: "Phone, email, address and hours" },
-  { id: "social", label: "Social links", description: "Approved public social profiles" },
+  { id: "business", label: "Business identity", description: "Public name and business description" },
   { id: "home", label: "Home page", description: "Hero, promises and concierge copy" },
+  { id: "contact", label: "Contact details", description: "Public phone, email and opening hours" },
   { id: "pages", label: "Pages & consent", description: "Financing, contact and consent wording" },
-  { id: "seo", label: "Search & sharing", description: "Page titles, descriptions and social image" },
+  { id: "social", label: "Social links", description: "Approved public social profiles" },
+  { id: "seo", label: "Search & sharing", description: "Page titles and search descriptions" },
+  { id: "advanced", label: "Advanced", description: "Technical URLs, assets and integration values" },
 ] as const;
 
 type SettingsSection = (typeof settingsSections)[number]["id"];
@@ -41,7 +42,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
       const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
         : "smooth";
-      contentRef.current?.scrollIntoView({ behavior, block: "start" });
+      contentRef.current?.scrollTo({ behavior, top: 0 });
     });
 
     return () => window.cancelAnimationFrame(frameId);
@@ -140,8 +141,8 @@ export function SettingsForm({ settings }: SettingsFormProps) {
                   aria-current={isActive ? "page" : undefined}
                   className={`rounded-xl border px-4 py-3 text-left transition-colors ${
                     isActive
-                      ? "border-gold/50 bg-gold/10 text-white"
-                      : "border-transparent text-muted hover:border-border hover:text-white"
+                      ? "border-gold/50 bg-gold/10 text-foreground"
+                      : "border-transparent text-muted hover:border-border hover:text-foreground"
                   }`}
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
@@ -155,14 +156,14 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           </nav>
         </aside>
 
-        <div className="scroll-mt-6" ref={contentRef}>
+        <div
+          className="scrollbar-luxury scroll-mt-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto lg:pr-2"
+          ref={contentRef}
+        >
           <div data-settings-section="business" hidden={activeSection !== "business"} id="settings-panel-business">
             <SettingsGroup legend="Business identity" disabled={isPending}>
               <Field label="Business name" name="name" defaultValue={settings.name} />
               <Field label="Short name" name="shortName" defaultValue={settings.shortName} />
-              <UrlField label="Logo URL" name="logoUrl" value={logoUrl} onChange={setLogoUrl} />
-              <div className="sm:col-span-2"><UrlField label="Favicon URL (optional)" name="faviconUrl" value={faviconUrl} onChange={setFaviconUrl} required={false} /><SiteImageUpload onUploaded={setFaviconUrl} /></div>
-              <div className="sm:col-span-2"><SiteImageUpload onUploaded={setLogoUrl} /></div>
               <Area label="Business description" name="description" defaultValue={settings.description} />
             </SettingsGroup>
           </div>
@@ -170,11 +171,12 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           <div data-settings-section="contact" hidden={activeSection !== "contact"} id="settings-panel-contact">
             <SettingsGroup legend="Contact details" disabled={isPending}>
               <Field label="Phone display" name="phoneDisplay" defaultValue={settings.phoneDisplay} />
-              <Field label="Phone link" name="phoneHref" defaultValue={settings.phoneHref} />
               <Field label="Email (optional)" name="email" type="email" defaultValue={settings.email} required={false} />
+              <p className="sm:col-span-2 text-sm leading-6 text-muted">
+                Location fields are retained for future use but are not published while the showroom address remains unconfirmed.
+              </p>
               <Field label="Address line 1" name="addressLine1" defaultValue={settings.addressLine1} required={false} />
               <Field label="Address line 2" name="addressLine2" defaultValue={settings.addressLine2} required={false} />
-              <Field label="Map URL" name="mapUrl" type="url" defaultValue={settings.mapUrl} required={false} />
               <Area label="Hours (one line per row)" name="hours" defaultValue={settings.hours.join("\n")} />
             </SettingsGroup>
           </div>
@@ -214,7 +216,6 @@ export function SettingsForm({ settings }: SettingsFormProps) {
               <Area label="Financing introduction" name="financingIntroduction" defaultValue={settings.financingIntroduction} />
               <Area label="Contact introduction" name="contactIntroduction" defaultValue={settings.contactIntroduction} />
               <Area label="Consent text (optional)" name="consentText" defaultValue={settings.consentText} required={false} />
-              <Field label="Consent version (optional)" name="consentTextVersion" defaultValue={settings.consentTextVersion} required={false} />
             </SettingsGroup>
           </div>
 
@@ -228,7 +229,30 @@ export function SettingsForm({ settings }: SettingsFormProps) {
                   <Area label={`${page} description`} name={`seo.${page}.description`} defaultValue={settings.seo[page].description} />
                 </div>
               ))}
-              <div className="sm:col-span-2"><UrlField label="Open Graph image URL" name="seo.openGraphImageUrl" value={openGraphImageUrl} onChange={setOpenGraphImageUrl} type="url" required={false} /><SiteImageUpload onUploaded={setOpenGraphImageUrl} /></div>
+            </SettingsGroup>
+          </div>
+
+          <div data-settings-section="advanced" hidden={activeSection !== "advanced"} id="settings-panel-advanced">
+            <SettingsGroup legend="Advanced settings" disabled={isPending}>
+              <p className="sm:col-span-2 text-sm leading-6 text-muted">
+                These values control technical links and browser metadata. Change them only when replacing an asset or integration target.
+              </p>
+              <UrlField label="Logo URL" name="logoUrl" value={logoUrl} onChange={setLogoUrl} />
+              <Field label="Phone link target" name="phoneHref" defaultValue={settings.phoneHref} />
+              <div className="sm:col-span-2">
+                <UrlField label="Favicon URL (optional)" name="faviconUrl" value={faviconUrl} onChange={setFaviconUrl} required={false} />
+                <SiteImageUpload onUploaded={setFaviconUrl} />
+              </div>
+              <div className="sm:col-span-2">
+                <p className="form-label">Replace logo asset</p>
+                <SiteImageUpload onUploaded={setLogoUrl} />
+              </div>
+              <Field label="Map URL (optional)" name="mapUrl" type="url" defaultValue={settings.mapUrl} required={false} />
+              <Field label="Consent version (optional)" name="consentTextVersion" defaultValue={settings.consentTextVersion} required={false} />
+              <div className="sm:col-span-2">
+                <UrlField label="Open Graph image URL" name="seo.openGraphImageUrl" value={openGraphImageUrl} onChange={setOpenGraphImageUrl} type="url" required={false} />
+                <SiteImageUpload onUploaded={setOpenGraphImageUrl} />
+              </div>
             </SettingsGroup>
           </div>
         </div>
@@ -247,7 +271,7 @@ function isSettingsSection(value: string | undefined): value is SettingsSection 
 }
 
 function SettingsGroup({ legend, disabled, children }: { legend: string; disabled: boolean; children: ReactNode }) {
-  return <fieldset className="grid gap-5 rounded-2xl border border-border bg-surface p-5 sm:grid-cols-2" disabled={disabled}><legend className="px-2 text-sm font-semibold text-white">{legend}</legend>{children}</fieldset>;
+  return <fieldset className="grid gap-5 rounded-2xl border border-border bg-surface p-5 sm:grid-cols-2" disabled={disabled}><legend className="px-2 text-sm font-semibold text-foreground">{legend}</legend>{children}</fieldset>;
 }
 
 function Field({ label, name, defaultValue, type = "text", required = true }: { label: string; name: string; defaultValue?: string; type?: "text" | "email" | "url"; required?: boolean }) {

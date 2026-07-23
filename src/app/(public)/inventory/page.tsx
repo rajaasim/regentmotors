@@ -21,7 +21,7 @@ export default async function InventoryPage() {
           INVENTORY
         </span>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <nav className="mb-4 text-[10px] uppercase tracking-widest text-muted">
+          <nav className="mb-4 text-xs uppercase tracking-[0.14em] text-muted">
             <Link href="/" className="transition-colors hover:text-foreground">Home</Link>
             <span className="mx-2">/</span>
             <span className="text-foreground">Inventory</span>

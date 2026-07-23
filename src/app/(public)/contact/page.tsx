@@ -49,15 +49,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       : isCurrentVehicleConversation
         ? "Share its year, make, model and condition so we can include it in the conversation about your next purchase."
       : undefined;
-  const directionsUrl = settings.mapUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${settings.addressLine1 ?? ""}, ${settings.addressLine2 ?? ""}`,
-  )}`;
-
   return (
     <>
       <section className="page-hero">
         <div className="site-container" data-reveal>
-          <p className="eyebrow">Visit · Call · Write</p>
+          <p className="eyebrow">Call · Write</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
             Get in Touch
           </h1>
@@ -75,29 +71,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               data-cursor-reveal
               data-reveal="fade"
             >
-            <p className="eyebrow">{settings.name}</p>
+              <p className="eyebrow">{settings.name}</p>
               <dl className="mt-7 space-y-6">
-                <ContactItem label="Showroom" value={`${settings.addressLine1 ?? ""}\n${settings.addressLine2 ?? ""}`} />
                 <ContactItem label="Direct line" value={settings.phoneDisplay} href={settings.phoneHref} />
                 {settings.email ? <ContactItem label="Email" value={settings.email} href={`mailto:${settings.email}`} /> : null}
                 <ContactItem label="Hours" value={settings.hours.join("\n")} />
               </dl>
             </section>
-
-            <a
-              href={directionsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group grid min-h-72 place-items-center rounded-xl border border-border bg-[radial-gradient(circle_at_30%_30%,rgba(197,164,126,.2),transparent_48%)] bg-surface-raised text-center transition hover:border-gold/50"
-              data-cursor-reveal
-              data-reveal="fade"
-            >
-              <span>
-                <span className="eyebrow">Showroom location</span>
-                <span className="mt-4 block text-xl font-semibold text-foreground">Get directions</span>
-                <span className="mt-2 block text-sm text-muted">Open the showroom in Google Maps →</span>
-              </span>
-            </a>
           </div>
 
           <LeadForm
@@ -121,7 +101,7 @@ function ContactItem({ label, value, href }: { label: string; value: string; hre
 
   return (
     <div>
-      <dt className="text-[0.62rem] uppercase tracking-[0.16em] text-gold">{label}</dt>
+      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-gold">{label}</dt>
       <dd className="mt-2">{href ? <a className="hover:text-foreground" href={href}>{content}</a> : content}</dd>
     </div>
   );

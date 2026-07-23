@@ -23,6 +23,8 @@ test("homepage includes the approved buyer guidance", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Bring it into the conversation." })).toBeVisible();
   await expect(page.getByText("Step 01")).toBeVisible();
   await expect(page.getByText("How do I arrange a test drive?")).toBeVisible();
+  await expect(page.getByText("Where is the Regent Motors showroom?")).toHaveCount(0);
+  await expect(page.getByText("39c Chambers Brg Rd", { exact: false })).toHaveCount(0);
 });
 
 test("theme defaults to dark and persists an optional light preference", async ({ page }) => {
@@ -32,11 +34,22 @@ test("theme defaults to dark and persists an optional light preference", async (
   const lightThemeButton = page.getByRole("button", { name: "Switch to light theme" });
   await lightThemeButton.click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(255, 255, 255)");
 
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+});
+
+test("hero vehicle moves progressively with the page scroll", async ({ page }) => {
+  await page.goto("/");
+
+  const heroMedia = page.locator(".hero-car-motion");
+  const initialTransform = await heroMedia.evaluate((element) => getComputedStyle(element).transform);
+  await page.evaluate(() => window.scrollTo(0, 500));
+  await expect.poll(() => heroMedia.evaluate((element) => getComputedStyle(element).transform))
+    .not.toBe(initialTransform);
 });
 
 test("favicon metadata uses a purpose-built icon", async ({ page }) => {

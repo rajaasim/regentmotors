@@ -91,7 +91,7 @@ export function LeadSuccessDialog({ reference, onClose }: LeadSuccessDialogProps
           Thank you. The Regent Motors team has received your enquiry and can use this reference to locate it.
         </p>
         <div className="mx-auto mt-6 w-fit rounded-full border border-gold/40 bg-gold/10 px-4 py-2">
-          <span className="text-[0.6rem] uppercase tracking-[0.18em] text-muted">Reference</span>
+          <span className="text-xs uppercase tracking-[0.14em] text-muted">Reference</span>
           <strong className="ml-3 font-mono text-sm tracking-[0.12em] text-gold">{reference}</strong>
         </div>
         <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-center">
