@@ -19,7 +19,7 @@ export function HeroScrollMedia() {
       frameId = 0;
       const bounds = hero.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height));
-      media.style.setProperty("--hero-drive-x", `${progress * 12}vw`);
+      media.style.setProperty("--hero-drive-x", `${progress * -18}vw`);
       media.style.setProperty("--hero-drive-y", `${progress * 1.5}rem`);
       media.style.setProperty("--hero-drive-scale", String(1.04 + progress * 0.04));
     };
