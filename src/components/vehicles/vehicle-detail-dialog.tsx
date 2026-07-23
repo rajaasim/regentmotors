@@ -151,7 +151,7 @@ export function VehicleDetailDialog({
           </div>
           <div className="p-7 sm:p-10">
             <p className="eyebrow">{vehicle.year} · {vehicle.trim}</p>
-            <h2 id="vehicle-dialog-title" className="mt-4 text-3xl font-semibold text-white">
+            <h2 id="vehicle-dialog-title" className="mt-4 text-3xl font-semibold text-foreground">
               {vehicle.make} {vehicle.model}
             </h2>
             <p className="mt-3 text-3xl font-semibold text-gold">{currency.format(vehicle.price)}</p>
@@ -219,7 +219,7 @@ export function VehicleDetailDialog({
         </div>
       </section>
 
-      <div className="fixed inset-x-4 bottom-4 z-[55] mx-auto grid max-w-lg grid-cols-2 gap-2 rounded-2xl border border-white/15 bg-background/90 p-2 shadow-[0_20px_60px_rgba(0,0,0,.75)] backdrop-blur-xl backdrop-saturate-150 lg:hidden">
+      <div className="fixed inset-x-4 bottom-4 z-[55] mx-auto grid max-w-lg grid-cols-2 gap-2 rounded-2xl border border-border bg-background/90 p-2 shadow-[0_20px_60px_rgba(0,0,0,.35)] backdrop-blur-xl backdrop-saturate-150 lg:hidden">
         <a className="button button-primary px-3" href={`/contact?vehicle=${vehicle.id}&intent=test_drive`}>
           Test drive
         </a>
@@ -245,7 +245,7 @@ function Specification({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <dt className="text-[0.6rem] uppercase tracking-[0.14em] text-muted">{label}</dt>
-      <dd className="mt-1 text-sm text-white">{value}</dd>
+      <dd className="mt-1 text-sm text-foreground">{value}</dd>
     </div>
   );
 }

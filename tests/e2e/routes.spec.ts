@@ -16,6 +16,39 @@ for (const route of routes) {
   });
 }
 
+test("homepage includes the approved buyer guidance", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.getByRole("heading", { name: "Finance your next vehicle." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Bring it into the conversation." })).toBeVisible();
+  await expect(page.getByText("Step 01")).toBeVisible();
+  await expect(page.getByText("How do I arrange a test drive?")).toBeVisible();
+});
+
+test("theme defaults to dark and persists an optional light preference", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme", "light");
+
+  const lightThemeButton = page.getByRole("button", { name: "Switch to light theme" });
+  await lightThemeButton.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+});
+
+test("favicon metadata uses a purpose-built icon", async ({ page }) => {
+  await page.goto("/");
+
+  const iconUrls = await page.locator('link[rel="icon"]').evaluateAll((links) =>
+    links.map((link) => link.getAttribute("href") ?? ""),
+  );
+  expect(iconUrls.some((url) => url.includes("favicon") || url.includes("icon"))).toBe(true);
+  expect(iconUrls.some((url) => url.includes("/images/logo.png"))).toBe(false);
+});
+
 test("inventory filters and opens vehicle details", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 640 });
   await page.goto("/inventory");
@@ -77,6 +110,9 @@ test("vehicle and test-drive enquiries preserve their context", async ({ page })
 
   await page.goto("/contact?intent=test_drive");
   await expect(page.getByRole("heading", { name: "Book a test drive" })).toBeVisible();
+
+  await page.goto("/contact?intent=trade_in");
+  await expect(page.getByRole("heading", { name: "Discuss your current vehicle" })).toBeVisible();
 
   await page.goto("/financing?vehicle=veh-maserati-ghibli-2023");
   await expect(page.getByRole("heading", { name: "Discuss financing the 2023 Maserati Ghibli" })).toBeVisible();

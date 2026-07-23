@@ -80,7 +80,7 @@ export function LeadSuccessDialog({ reference, onClose }: LeadSuccessDialogProps
         </div>
         <p className="eyebrow mt-6">Submission confirmed</p>
         <h2
-          className="mt-3 text-3xl font-semibold text-white focus:outline-none"
+          className="mt-3 text-3xl font-semibold text-foreground focus:outline-none"
           id={titleId}
           ref={titleRef}
           tabIndex={-1}

@@ -131,7 +131,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
           data-cursor-reveal
           data-reveal="fade"
         >
-          <h2 id="inventory-filter-title" className="font-serif text-2xl font-medium text-white">
+          <h2 id="inventory-filter-title" className="font-serif text-2xl font-medium text-foreground">
             Refine Search
           </h2>
 
@@ -229,7 +229,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
                 </button>
               ))}
               <button
-                className="px-2 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted transition hover:text-white"
+                className="px-2 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted transition hover:text-foreground"
                 onClick={resetFilters}
                 type="button"
               >
@@ -247,7 +247,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
           ) : (
             <div className="mt-7 rounded-xl border border-dashed border-gold/25 bg-[radial-gradient(circle_at_top,rgba(197,164,126,.08),transparent_55%)] px-6 py-16 text-center">
               <EmptyVehicleGraphic />
-              <p className="mt-6 font-serif text-2xl text-white">No vehicles match your selection.</p>
+              <p className="mt-6 font-serif text-2xl text-foreground">No vehicles match your selection.</p>
               <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted">
                 Try a broader price range or reset the filters to return to the complete collection.
               </p>
@@ -286,13 +286,13 @@ function DualPriceRange({
   return (
     <div>
       <p className="form-label">Price range</p>
-      <div className="mt-3 flex items-center justify-between gap-3 text-xs text-white">
+      <div className="mt-3 flex items-center justify-between gap-3 text-xs text-foreground">
         <output htmlFor="inventory-min-price">{price.format(minValue)}</output>
         <span className="text-muted" aria-hidden="true">—</span>
         <output htmlFor="inventory-max-price">{price.format(maxValue)}</output>
       </div>
       <div className="relative mt-5 h-6">
-        <div className="absolute inset-x-0 top-2.5 h-1 rounded-full bg-white/10" />
+        <div className="absolute inset-x-0 top-2.5 h-1 rounded-full bg-border" />
         <div
           className="absolute top-2.5 h-1 rounded-full bg-gold"
           style={{ left: `${minPercent}%`, right: `${100 - maxPercent}%` }}

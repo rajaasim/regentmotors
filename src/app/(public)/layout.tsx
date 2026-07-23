@@ -9,7 +9,7 @@ export default async function PublicLayout({
   const settings = await getSiteSettings();
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="public-shell flex min-h-screen flex-col">
       <AmbientInteractions />
       <a className="skip-link" href="#main-content">
         Skip to content

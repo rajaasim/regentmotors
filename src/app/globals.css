@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: dark;
   --background: #0a0a0b;
   --surface: #141416;
   --surface-raised: #1c1c1f;
@@ -9,6 +10,18 @@
   --border: rgba(255, 255, 255, 0.08);
   --gold: #c5a47e;
   --gold-light: #dfbf99;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f6f2eb;
+  --surface: #fffdf9;
+  --surface-raised: #ece5da;
+  --foreground: #211d18;
+  --muted: #6d655b;
+  --border: rgba(55, 45, 34, 0.14);
+  --gold: #8b6639;
+  --gold-light: #b58a52;
 }
 
 @theme inline {
@@ -27,8 +40,8 @@
   --color-border: var(--border);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
-  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Manrope Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Playfair Display Variable", Georgia, serif;
 }
 
 /* Custom scrollbar styling: Thin, dark track, gold thumb */
@@ -69,6 +82,14 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.public-shell {
+  background: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -154,7 +175,7 @@ a {
     padding-block: clamp(7.5rem, 10vw, 8rem) clamp(4rem, 8vw, 7rem);
     background:
       radial-gradient(circle at 80% 10%, rgba(197, 164, 126, 0.06), transparent 35%),
-      #0A0A0B;
+      var(--background);
   }
 
   .eyebrow {
@@ -225,8 +246,8 @@ a {
   }
 
   .button-outline {
-    border: 1px solid #666;
-    color: white;
+    border: 1px solid color-mix(in srgb, var(--foreground) 35%, transparent);
+    color: var(--foreground);
   }
 
   .button-outline:hover {
@@ -244,7 +265,7 @@ a {
 
   .nav-link:hover,
   .nav-link-active {
-    color: white;
+    color: var(--foreground);
   }
 
   .nav-link-active::after {
@@ -298,16 +319,16 @@ a {
     width: 100%;
     border: 1px solid var(--border);
     border-radius: 0.4rem;
-    background: #141416;
+    background: var(--surface-raised);
     padding: 0.8rem 0.9rem;
-    color: white;
+    color: var(--foreground);
     font-size: 0.85rem;
     letter-spacing: normal;
     text-transform: none;
   }
 
   .form-control::placeholder {
-    color: #66686d;
+    color: color-mix(in srgb, var(--muted) 72%, transparent);
   }
 
   .form-control:focus {
@@ -373,6 +394,68 @@ a {
   }
 }
 
+.hero-media-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 6, 0.97),
+    rgba(5, 5, 6, 0.42) 48%,
+    rgba(5, 5, 6, 0.8)
+  );
+}
+
+.theme-toggle {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--foreground);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  background: var(--surface);
+  color: var(--gold);
+  transform: rotate(8deg);
+}
+
+.trust-point {
+  border-bottom: 1px solid var(--border);
+}
+
+.trust-point:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .trust-point:nth-child(odd) {
+    border-right: 1px solid var(--border);
+  }
+
+  .trust-point:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .trust-point,
+  .trust-point:nth-child(odd) {
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+  }
+
+  .trust-point:last-child {
+    border-right: 0;
+  }
+}
+
 .success-check {
   width: 5.5rem;
   color: var(--gold);
@@ -404,7 +487,7 @@ a {
   height: 1.15rem;
   margin-top: 0.18rem;
   appearance: none;
-  border: 2px solid #0a0a0b;
+  border: 2px solid var(--background);
   border-radius: 999px;
   background: var(--gold-light);
   box-shadow: 0 0 0 1px var(--gold), 0 4px 15px rgba(0, 0, 0, 0.55);
@@ -420,7 +503,7 @@ a {
 .range-input::-moz-range-thumb {
   width: 1.15rem;
   height: 1.15rem;
-  border: 2px solid #0a0a0b;
+  border: 2px solid var(--background);
   border-radius: 999px;
   background: var(--gold-light);
   box-shadow: 0 0 0 1px var(--gold), 0 4px 15px rgba(0, 0, 0, 0.55);

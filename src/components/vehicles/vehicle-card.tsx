@@ -66,22 +66,22 @@ export function VehicleCard({
         <p className="text-[0.6rem] uppercase tracking-[0.2em] text-muted">
           {vehicle.year} · {vehicle.trim}
         </p>
-        <h3 className="mt-3 font-serif text-2xl font-medium text-white">
+        <h3 className="mt-3 font-serif text-2xl font-medium text-foreground">
           {vehicle.make} {vehicle.model}
         </h3>
 
         <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-border py-4 text-xs">
           <div>
             <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Mileage</dt>
-            <dd className="mt-1 text-white">{number.format(vehicle.mileage)} {vehicle.mileageUnit}</dd>
+            <dd className="mt-1 text-foreground">{number.format(vehicle.mileage)} {vehicle.mileageUnit}</dd>
           </div>
           <div>
             <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Fuel</dt>
-            <dd className="mt-1 truncate text-white">{vehicle.fuel}</dd>
+            <dd className="mt-1 truncate text-foreground">{vehicle.fuel}</dd>
           </div>
           <div className="text-right">
             <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Transmission</dt>
-            <dd className="mt-1 text-white">{vehicle.transmission}</dd>
+            <dd className="mt-1 text-foreground">{vehicle.transmission}</dd>
           </div>
         </dl>
 
