@@ -112,7 +112,7 @@ export function LeadForm({
         data-reveal="fade"
       >
       <p className="eyebrow">Send an enquiry</p>
-      <h2 className="mt-4 text-2xl font-semibold text-white">{title}</h2>
+      <h2 className="mt-4 text-2xl font-semibold text-foreground">{title}</h2>
       {description ? <p className="mt-3 text-sm leading-6 text-muted">{description}</p> : null}
 
       <div className="mt-7 grid gap-5 sm:grid-cols-2" key={turnstileReset}>

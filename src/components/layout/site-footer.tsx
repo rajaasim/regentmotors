@@ -6,18 +6,23 @@ import type { SiteSettingsInput } from "@/lib/site-settings-validation";
 
 export function SiteFooter({ settings }: { settings: SiteSettingsInput }) {
   return (
-    <footer className="border-t border-border bg-background text-white">
+    <footer className="border-t border-border bg-background text-foreground">
       <section className="border-b border-border px-6 py-20 text-center sm:py-24" data-reveal>
         <p className="eyebrow">Private consultations</p>
-        <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+        <h2 className="mx-auto mt-5 max-w-4xl font-serif text-5xl font-medium leading-[1.05] tracking-[-0.025em] sm:text-6xl">
           Ready to Elevate Your Drive?
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted sm:text-base">
+        <p className="mx-auto mt-6 max-w-xl font-sans text-sm leading-7 text-muted sm:text-base">
           {settings.contactIntroduction}
         </p>
-        <Link className="button button-primary mt-8" href="/contact?intent=test_drive">
-          Book a test drive <span aria-hidden>→</span>
-        </Link>
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link className="button button-primary" href="/contact?intent=test_drive">
+            Book a test drive <span aria-hidden>→</span>
+          </Link>
+          <a className="button button-outline" href={settings.phoneHref}>
+            Call {settings.phoneDisplay}
+          </a>
+        </div>
       </section>
 
       <div className="site-container grid gap-12 py-14 md:grid-cols-12 md:py-20">

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { BrandMark } from "@/components/ui/brand-mark";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { navigation } from "@/data/site";
 
 const focusableSelector = "a[href], button:not([disabled])";
@@ -72,7 +73,7 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
 
   return (
     <>
-      <header className="fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 rounded-full border border-white/10 bg-background/85 px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl backdrop-saturate-150 sm:top-6 sm:px-8">
+      <header className="site-header fixed left-1/2 top-4 z-50 w-[calc(100%-2rem)] max-w-7xl -translate-x-1/2 rounded-full border border-border bg-background/85 px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.2)] backdrop-blur-xl backdrop-saturate-150 sm:top-6 sm:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
           <BrandMark name={name} logoUrl={logoUrl} />
 
@@ -86,7 +87,7 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
                   key={item.href}
                   href={item.href}
                   className={`group relative py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${
-                    isActive ? "text-white" : "text-muted hover:text-white"
+                    isActive ? "text-foreground" : "text-muted hover:text-foreground"
                   }`}
                 >
                   {item.label}
@@ -101,7 +102,8 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
           </nav>
 
           <div className="hidden items-center gap-5 md:flex">
-            <a className="text-xs text-muted hover:text-white" href={phoneHref}>
+            <ThemeToggle />
+            <a className="text-xs text-muted hover:text-foreground" href={phoneHref}>
               {phoneDisplay}
             </a>
             <Link className="button button-primary button-small" href="/financing">
@@ -109,21 +111,24 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
             </Link>
           </div>
 
-          <button
-            type="button"
-            className="grid size-10 place-items-center rounded-full border border-white/15 text-white transition hover:bg-white/5 md:hidden"
-            aria-expanded={isOpen}
-            aria-controls="mobile-navigation"
-            aria-label={isOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => setIsOpen((current) => !current)}
-          >
-            <span className="sr-only">Menu</span>
-            <span aria-hidden className="flex w-5 flex-col gap-1">
-              <span className={`h-0.5 w-full bg-current transition-transform ${isOpen ? "translate-y-1.5 rotate-45" : ""}`} />
-              <span className={`h-0.5 w-full bg-current transition-opacity ${isOpen ? "opacity-0" : ""}`} />
-              <span className={`h-0.5 w-full bg-current transition-transform ${isOpen ? "-translate-y-1.5 -rotate-45" : ""}`} />
-            </span>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="grid size-10 place-items-center rounded-full border border-border text-foreground transition hover:bg-surface"
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+              aria-label={isOpen ? "Close navigation" : "Open navigation"}
+              onClick={() => setIsOpen((current) => !current)}
+            >
+              <span className="sr-only">Menu</span>
+              <span aria-hidden className="flex w-5 flex-col gap-1">
+                <span className={`h-0.5 w-full bg-current transition-transform ${isOpen ? "translate-y-1.5 rotate-45" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-opacity ${isOpen ? "opacity-0" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-transform ${isOpen ? "-translate-y-1.5 -rotate-45" : ""}`} />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -141,14 +146,14 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-serif text-3xl font-medium tracking-wide text-white transition-colors hover:text-gold"
+                className="font-serif text-3xl font-medium tracking-wide text-foreground transition-colors hover:text-gold"
                 onClick={closeMobileNavigation}
               >
                 {item.label}
               </Link>
             ))}
             <a
-              className="mt-3 text-sm text-muted hover:text-white"
+              className="mt-3 text-sm text-muted hover:text-foreground"
               href={phoneHref}
               onClick={closeMobileNavigation}
             >

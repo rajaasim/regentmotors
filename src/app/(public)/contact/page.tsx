@@ -27,6 +27,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     getSiteSettings(),
   ]);
   const isTestDrive = firstSearchValue(query.intent) === "test_drive";
+  const isCurrentVehicleConversation = firstSearchValue(query.intent) === "trade_in";
   const formType = vehicle
     ? isTestDrive
       ? "test_drive"
@@ -38,11 +39,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     ? `Enquire about the ${vehicle.year} ${vehicle.make} ${vehicle.model}`
     : isTestDrive
       ? "Book a test drive"
+      : isCurrentVehicleConversation
+        ? "Discuss your current vehicle"
       : "How can we help?";
   const formDescription = vehicle
     ? `Your enquiry will include the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
     : isTestDrive
       ? "Tell us how to reach you and we will arrange a suitable time."
+      : isCurrentVehicleConversation
+        ? "Share its year, make, model and condition so we can include it in the conversation about your next purchase."
       : undefined;
   const directionsUrl = settings.mapUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     `${settings.addressLine1 ?? ""}, ${settings.addressLine2 ?? ""}`,
@@ -53,7 +58,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className="page-hero">
         <div className="site-container" data-reveal>
           <p className="eyebrow">Visit · Call · Write</p>
-          <h1 className="mt-5 text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+          <h1 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
             Get in Touch
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
@@ -83,13 +88,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               href={directionsUrl}
               target="_blank"
               rel="noreferrer"
-              className="group grid min-h-72 place-items-center rounded-xl border border-border bg-[radial-gradient(circle_at_30%_30%,rgba(223,171,48,.16),transparent_45%),linear-gradient(135deg,#111,#060606)] text-center transition hover:border-gold/50"
+              className="group grid min-h-72 place-items-center rounded-xl border border-border bg-[radial-gradient(circle_at_30%_30%,rgba(197,164,126,.2),transparent_48%)] bg-surface-raised text-center transition hover:border-gold/50"
               data-cursor-reveal
               data-reveal="fade"
             >
               <span>
                 <span className="eyebrow">Showroom location</span>
-                <span className="mt-4 block text-xl font-semibold text-white">Get directions</span>
+                <span className="mt-4 block text-xl font-semibold text-foreground">Get directions</span>
                 <span className="mt-2 block text-sm text-muted">Open the showroom in Google Maps →</span>
               </span>
             </a>
@@ -117,7 +122,7 @@ function ContactItem({ label, value, href }: { label: string; value: string; hre
   return (
     <div>
       <dt className="text-[0.62rem] uppercase tracking-[0.16em] text-gold">{label}</dt>
-      <dd className="mt-2">{href ? <a className="hover:text-white" href={href}>{content}</a> : content}</dd>
+      <dd className="mt-2">{href ? <a className="hover:text-foreground" href={href}>{content}</a> : content}</dd>
     </div>
   );
 }

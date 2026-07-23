@@ -26,7 +26,7 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
       <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-10" data-reveal>
         <div className="max-w-xl lg:shrink-0">
           <p className="eyebrow">The Collection</p>
-          <h2 className="mt-4 font-serif text-4xl font-medium text-white md:text-5xl">
+          <h2 className="mt-4 font-serif text-4xl font-medium text-foreground md:text-5xl">
             Featured Vehicles
           </h2>
           <p className="mt-4 max-w-md text-sm text-muted md:text-base">
@@ -42,7 +42,7 @@ export function VehicleShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-[0.65rem] font-bold uppercase tracking-[0.14em] transition-all duration-300 ${
                 bodyStyle === style
                   ? "border-gold bg-gold text-background shadow-[0_4px_15px_rgba(197,164,126,0.35)]"
-                  : "border-border text-muted hover:bg-white/5 hover:text-white"
+                  : "border-border text-muted hover:bg-surface hover:text-foreground"
               }`}
               aria-pressed={bodyStyle === style}
               onClick={() => setBodyStyle(style)}

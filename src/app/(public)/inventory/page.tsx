@@ -15,21 +15,21 @@ export default async function InventoryPage() {
     <>
       <section className="relative overflow-hidden border-b border-border bg-surface py-24 md:py-32">
         <span
-          className="absolute top-1/2 left-0 -translate-y-1/2 font-serif text-[12rem] md:text-[18rem] font-bold text-white/[0.015] tracking-widest select-none pointer-events-none"
+          className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 select-none font-serif text-[12rem] font-bold tracking-widest text-foreground/[0.025] md:text-[18rem]"
           aria-hidden="true"
         >
           INVENTORY
         </span>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <nav className="text-[#86868B] text-[10px] uppercase tracking-widest mb-4">
-            <Link href="/" className="hover:text-[#F5F5F7] transition-colors">Home</Link>
+          <nav className="mb-4 text-[10px] uppercase tracking-widest text-muted">
+            <Link href="/" className="transition-colors hover:text-foreground">Home</Link>
             <span className="mx-2">/</span>
-            <span className="text-[#F5F5F7]">Inventory</span>
+            <span className="text-foreground">Inventory</span>
           </nav>
           <p className="eyebrow animate-fade-in-up">
             Inventory
           </p>
-          <h1 className="mt-4 font-serif text-5xl font-medium text-white md:text-6xl animate-fade-in-up animation-delay-150">
+          <h1 className="mt-4 font-serif text-5xl font-medium text-foreground md:text-6xl animate-fade-in-up animation-delay-150">
             The Collection
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted animate-fade-in-up animation-delay-300">
