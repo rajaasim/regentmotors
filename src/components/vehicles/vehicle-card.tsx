@@ -45,11 +45,11 @@ export function VehicleCard({
           />
         ) : null}
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-          <span className="rounded-sm border border-gold/50 bg-black/70 px-2 py-1 text-[0.55rem] uppercase tracking-[0.16em] text-gold">
+          <span className="rounded-sm border border-gold/50 bg-black/70 px-2 py-1 text-xs uppercase tracking-[0.14em] text-gold">
             {vehicle.bodyStyle}
           </span>
           {vehicle.status !== "available" ? (
-            <span className="rounded-sm border border-white/25 bg-black/75 px-2 py-1 text-[0.55rem] uppercase tracking-[0.16em] text-white">
+            <span className="rounded-sm border border-white/25 bg-black/75 px-2 py-1 text-xs uppercase tracking-[0.14em] text-white">
               {vehicle.status}
             </span>
           ) : null}
@@ -63,7 +63,7 @@ export function VehicleCard({
       </div>
 
       <div className="p-6 sm:p-7">
-        <p className="text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+        <p className="text-xs uppercase tracking-[0.16em] text-muted">
           {vehicle.year} · {vehicle.trim}
         </p>
         <h3 className="mt-3 font-serif text-2xl font-medium text-foreground">
@@ -72,29 +72,29 @@ export function VehicleCard({
 
         <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-border py-4 text-xs">
           <div>
-            <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Mileage</dt>
+            <dt className="text-xs uppercase tracking-[0.1em] text-muted">Mileage</dt>
             <dd className="mt-1 text-foreground">{number.format(vehicle.mileage)} {vehicle.mileageUnit}</dd>
           </div>
           <div>
-            <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Fuel</dt>
+            <dt className="text-xs uppercase tracking-[0.1em] text-muted">Fuel</dt>
             <dd className="mt-1 truncate text-foreground">{vehicle.fuel}</dd>
           </div>
           <div className="text-right">
-            <dt className="text-[0.55rem] uppercase tracking-[0.14em] text-muted">Transmission</dt>
+            <dt className="text-xs uppercase tracking-[0.1em] text-muted">Transmission</dt>
             <dd className="mt-1 text-foreground">{vehicle.transmission}</dd>
           </div>
         </dl>
 
         <div className="mt-6 flex items-end justify-between gap-4">
           <div>
-            <p className="text-[0.6rem] uppercase tracking-[0.16em] text-muted">Price</p>
+            <p className="text-xs uppercase tracking-[0.12em] text-muted">Price</p>
             <p className="mt-1 font-serif text-2xl font-medium text-gold">
               {currency.format(vehicle.price)}
             </p>
           </div>
           <button
             type="button"
-            className="vehicle-card-action text-right text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted transition hover:text-gold focus-visible:text-gold"
+            className="vehicle-card-action text-right text-xs font-semibold uppercase tracking-[0.12em] text-muted transition hover:text-gold focus-visible:text-gold"
             aria-label={`View details for ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
             onClick={() => onSelect(vehicle)}
           >

@@ -258,10 +258,10 @@ function TextField({
         <span className="field-validation-icon text-gold" aria-label={`${label} format verified`} role="img">✓</span>
       ) : null}
       {hint && validationState !== "invalid" ? (
-        <span className="mt-2 block text-[0.68rem] normal-case tracking-normal text-muted" id={hintId}>{hint}</span>
+        <span className="mt-2 block text-xs normal-case tracking-normal text-muted" id={hintId}>{hint}</span>
       ) : null}
       {validationState === "invalid" ? (
-        <span className="mt-2 block text-[0.68rem] normal-case tracking-normal text-red-400" id={errorId}>
+        <span className="mt-2 block text-xs normal-case tracking-normal text-red-400" id={errorId}>
           Enter a valid {type === "email" ? "email address" : "phone number"}.
         </span>
       ) : null}

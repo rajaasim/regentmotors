@@ -220,7 +220,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
               {activeFilters.map((filter) => (
                 <button
                   aria-label={`Remove ${filter.label} filter`}
-                  className="rounded-full border border-gold/35 bg-gold/8 px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-gold transition hover:border-gold hover:bg-gold/15"
+                  className="rounded-full border border-gold/35 bg-gold/8 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-gold transition hover:border-gold hover:bg-gold/15"
                   key={filter.id}
                   onClick={filter.clear}
                   type="button"
@@ -229,7 +229,7 @@ export function InventoryExplorer({ vehicles }: { vehicles: Vehicle[] }) {
                 </button>
               ))}
               <button
-                className="px-2 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted transition hover:text-foreground"
+                className="px-2 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-muted transition hover:text-foreground"
                 onClick={resetFilters}
                 type="button"
               >

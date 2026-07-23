@@ -126,7 +126,7 @@ export function VehicleDetailDialog({
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition duration-500 group-hover/gallery:scale-[1.02]"
               />
-              <span className="absolute bottom-4 right-4 rounded-full border border-white/20 bg-black/65 px-3 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur transition group-hover/gallery:border-gold group-hover/gallery:text-gold">
+              <span className="absolute bottom-4 right-4 rounded-full border border-white/20 bg-black/65 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur transition group-hover/gallery:border-gold group-hover/gallery:text-gold">
                 Expand image
               </span>
             </button>
@@ -197,11 +197,11 @@ export function VehicleDetailDialog({
               />
             </label>
             <div className="mt-6 rounded-lg border border-gold/40 bg-gold/5 p-5">
-              <p className="text-[0.6rem] uppercase tracking-[0.18em] text-muted">Estimated monthly</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-muted">Estimated monthly</p>
               <p className="mt-2 text-3xl font-semibold text-gold">
                 {currency.format(monthly)}<span className="ml-1 text-xs text-muted">/mo</span>
               </p>
-              <p className="mt-2 text-[0.65rem] text-muted">
+              <p className="mt-2 text-xs text-muted">
                 Illustrative estimate only. Final terms are subject to approval.
               </p>
             </div>
@@ -244,7 +244,7 @@ export function VehicleDetailDialog({
 function Specification({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-[0.6rem] uppercase tracking-[0.14em] text-muted">{label}</dt>
+      <dt className="text-xs uppercase tracking-[0.12em] text-muted">{label}</dt>
       <dd className="mt-1 text-sm text-foreground">{value}</dd>
     </div>
   );

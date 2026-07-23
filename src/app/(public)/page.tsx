@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { HeroScrollMedia } from "@/components/home/hero-scroll-media";
 import { VehicleShowcase } from "@/components/vehicles/vehicle-showcase";
 import { getSiteSettings } from "@/data/site-settings-repository";
 import { getFeaturedVehicles } from "@/lib/vehicles";
@@ -74,13 +74,7 @@ export default async function HomePage() {
       answer:
         "Yes. Send a general enquiry with its year, make, model and any details you would like the team to consider alongside your next purchase.",
     },
-    {
-      question: "Where is the Regent Motors showroom?",
-      answer: [settings.addressLine1, settings.addressLine2]
-        .filter((line) => Boolean(line))
-        .join(", "),
-    },
-  ].filter((item) => item.answer);
+  ];
 
   return (
     <>
@@ -88,14 +82,7 @@ export default async function HomePage() {
         className="hero-spotlight relative isolate flex min-h-[700px] items-center justify-center overflow-hidden border-b border-border sm:min-h-screen"
         data-cursor-reveal
       >
-        <Image
-          src="/images/hero-car.jpg"
-          alt="Premium black vehicle in the Regent Motors showroom"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover object-center"
-        />
+        <HeroScrollMedia />
         <div className="hero-media-overlay absolute inset-0 -z-10" />
 
         <div className="site-container relative z-10 py-28 text-center sm:py-32">
@@ -126,13 +113,13 @@ export default async function HomePage() {
               key={point.title}
               className="trust-point px-5 py-7"
             >
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-gold">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
                 0{index + 1}
               </p>
               <h2 className="mt-3 font-sans text-sm font-semibold text-foreground">
                 {point.title}
               </h2>
-              <p className="mt-2 text-xs leading-5 text-muted">{point.copy}</p>
+              <p className="mt-2 text-sm leading-6 text-muted">{point.copy}</p>
             </article>
           ))}
         </div>
@@ -234,7 +221,7 @@ export default async function HomePage() {
                 data-cursor-reveal
                 data-reveal
               >
-                <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-gold">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
                   Step 0{index + 1}
                 </p>
                 <h3 className="mt-5 font-serif text-2xl font-medium text-foreground">{step.title}</h3>

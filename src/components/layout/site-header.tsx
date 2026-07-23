@@ -86,7 +86,7 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`group relative py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${
+                  className={`group relative py-2 text-sm font-semibold uppercase tracking-[0.14em] transition-colors ${
                     isActive ? "text-foreground" : "text-muted hover:text-foreground"
                   }`}
                 >
@@ -103,7 +103,7 @@ export function SiteHeader({ name, logoUrl, phoneDisplay, phoneHref }: { name: s
 
           <div className="hidden items-center gap-5 md:flex">
             <ThemeToggle />
-            <a className="text-xs text-muted hover:text-foreground" href={phoneHref}>
+            <a className="text-sm text-muted hover:text-foreground" href={phoneHref}>
               {phoneDisplay}
             </a>
             <Link className="button button-primary button-small" href="/financing">
